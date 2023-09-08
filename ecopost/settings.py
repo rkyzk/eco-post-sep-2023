@@ -39,7 +39,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = [
     '8000-rkyzk-ecopostsep2023-1ej1p4vgf8u.ws-us104.gitpod.io',
-    'eco-post-a732dab85eab.herokuapp.com'
+    'eco-post-2023-10366a3320ac.herokuapp.com/'
 ]
 
 # Application definition
