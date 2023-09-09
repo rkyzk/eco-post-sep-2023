@@ -18,7 +18,7 @@ CATEGORY = (('animals', '動物を守る'),
             ('aquatic systems', '海、川、湖を守る'),
             ('soil & trees', '土と木を守る'),
             ('save resources', 'その他資源を守る'),
-            ('eco-conscious life style', '環境に配慮した生活'),
+            ('eco-conscious life style', '環境に配慮したライフスタイル'),
             ('others', 'その他'))
 
 

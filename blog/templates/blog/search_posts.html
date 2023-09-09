@@ -7,63 +7,48 @@
         <!-- Search form -->
         <form method="get" class="search-form">
             <div class="row mt-2">
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        {{postForm.form.title.label_tag}}
-                        {% render_field postForm.form.title class="form-control" %}
-                    </div>
+                <div class="col-md-6 col-12 form-lable-group">
+                    {{postForm.form.title.label_tag}}
+                    {% render_field postForm.form.title class="form-control" %}
                 </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        {{postForm.form.author__username.label_tag}}
-                        {% render_field postForm.form.author__username class="form-control" %}
-                    </div>
+                <div class="col-md-6 col-12 form-lable-group">
+                    {{postForm.form.author__username.label_tag}}
+                    {% render_field postForm.form.author__username class="form-control" %}
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        {{postForm.form.keyword.label_tag}}
-                        {% render_field postForm.form.keyword class="form-control" %}
-                    </div>
+                <div class="col-md-6 col-12 form-lable-group">
+                    {{postForm.form.keyword.label_tag}}
+                    {% render_field postForm.form.keyword class="form-control" %}
                 </div>
-                <div class="col-md-3 col-9">
-                    <div class="form-lable-group">
-                        {{postForm.form.num_of_likes.label_tag}}
-                        {% render_field postForm.form.num_of_likes class="form-control" %}
-                    </div>
+                <div class="col-md-3 col-9 form-lable-group">
+                    {{postForm.form.num_of_likes.label_tag}}
+                    {% render_field postForm.form.num_of_likes class="form-control" %}
                 </div>
                 <div class="col-md-3 col-3 align-self-end">
-                    <span>times</span>
+                    <span>回以上</span>
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        <span>Published date range</span>
-                        {{postForm.form.published_after.label_tag}}
-                        {% render_field postForm.form.published_after class="form-control" %}
-                    </div>
+                <div class="col-md-5 col-11 form-lable-group pub-date-range">
+                    <span>投稿日</span>
+                    {{postForm.form.published_after.label_tag}}
+                    {% render_field postForm.form.published_after class="form-control" %}
                 </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        {{postForm.form.published_before.label_tag}}
-                        {% render_field postForm.form.published_before class="form-control" %}
-                    </div>
+                <div class="col-md-1 col-1 pub-range">〜</div>
+                <div class=" col-md-5 col-11 form-lable-group pub-date-range pub-before">
+                    {{postForm.form.published_before.label_tag}}
+                    {% render_field postForm.form.published_before class="form-control" %}
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        {{postForm.form.city.label_tag}}
-                        {% render_field postForm.form.city class="form-control" %}
-                    </div>
+                <div class="col-md-6 col-12 form-lable-group">
+                    {{postForm.form.city.label_tag}}
+                    {% render_field postForm.form.city class="form-control" %}
                 </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-lable-group">
-                        {{postForm.form.category.label_tag}}
-                        {% render_field postForm.form.category class="form-control" %}
-                    </div>
+                <div class="col-md-6 col-12 form-lable-group">
+                    {{postForm.form.category.label_tag}}
+                    {% render_field postForm.form.category class="form-control" %}
                 </div>
             </div>
             <button class="beige-btn mt-3" type="submit" name="search">検索</button>

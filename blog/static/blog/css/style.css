@@ -254,6 +254,18 @@ h1 {
     color: red;
 }
 
+.pub-date-range label {
+    display: none;
+}
+
+.pub-range {
+    margin-top: 28px;
+}
+
+.pub-before {
+    margin-top: 22px;
+}
+
 /* ----------- update_post.html -------------------*/
 
 .update-post-btn {

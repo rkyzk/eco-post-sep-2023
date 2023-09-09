@@ -7,27 +7,29 @@ from datetime import datetime
 
 class PostFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains',
-                                      label="title")
+                                      label="タイトル")
     author__username = django_filters.CharFilter(lookup_expr='icontains',
-                                                 label='author')
+                                                 label='投稿者')
     published_after = django_filters.DateFilter(method='filter_start_date',
-                                                label='from',
+                                                label='pub_after_hide',
                                                 widget=Input(
                                                     attrs={'type': 'date'}))
     published_before = django_filters.DateFilter(method='filter_end_date',
-                                                 label='until',
+                                                 label='pub_before_hide',
                                                  widget=Input(
                                                     attrs={'type': 'date'}))
     num_of_likes = django_filters.NumberFilter(method='filter_likes',
-                                               label='liked more than',
+                                               label='「いいね」',
                                                widget=Input(
                                                     attrs={'min': int(0),
                                                            'type': 'number'}))
     category = django_filters.ChoiceFilter(choices=CATEGORY,
-                                           empty_label='Choose...')
-    city = django_filters.CharFilter(lookup_expr='icontains')
+                                           label='カテゴリー',
+                                           empty_label='選択してください')
+    city = django_filters.CharFilter(lookup_expr='icontains',
+                                     label="市/町/村")
     keyword = django_filters.CharFilter(method='filter_keyword',
-                                               label='keyword')
+                                        label='キーワード')
 
     class Meta:
         model = Post
