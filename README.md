@@ -30,3 +30,7 @@
 - コメント更新の際、更新ページが出てくる代わりに、コメントフォームを更新フォームに変え、詳細画面上で更新ができるようにしたい。（JavaScript, Ajax使用）
 - ユーザープロファイルの作成
 - 「いいね」、「ブックマーク」をページ更新なしにできるようにしたい。
+
+## 本プロジェクト作成にあたり参考にした資料
+「Code Star」
+https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
