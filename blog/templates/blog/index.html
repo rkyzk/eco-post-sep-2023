@@ -31,9 +31,9 @@
                 <div class="image-wrapper d-flex justify-content-center">
                     {% if 'default' in post.featured_image.url %}
                     <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891851/default-img_ojmwhd.jpg"
-                        alt="forest image">
+                        class="card-img-top" alt="forest image">
                     {% else %}
-                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
                     {% endif %}
                 </div>
                 <div class="mx-2 mt-2 post-text">
