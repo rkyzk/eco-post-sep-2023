@@ -156,6 +156,11 @@ footer {
     width: 80%;
 }
 
+.post-title {
+    height: 45px;
+    margin: 0;
+}
+
 /*   ------------ index.html ------------------------  */
 h1 {
     font-family: 'Montserrat Alternates', sans-serif;
