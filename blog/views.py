@@ -12,8 +12,9 @@ from .filters import PostFilter
 from .forms import PostForm, CommentForm
 from .models import Post, Comment, CATEGORY
 
+
 #　指定する数以上の「いいね」を集めた記事が「人気の記事」に表示される。
-min_num_likes = 1
+min_num_likes = 5
 
 
 def handler500(request):
@@ -49,11 +50,11 @@ class AddPost(LoginRequiredMixin, generic.CreateView):
         """
         # set the logged in user as the author
         form.instance.author = self.request.user
-        message = 'Your draft has been saved.'
+        message = '記事を下書きとして保存しました。'
         # If published, set the status to 1 ('Published.')
         if 'publish' in self.request.POST.keys():
             form.instance.status = 1
-            message = "Your post has been published."
+            message = "記事が投稿されました。"
         form.save()
         messages.add_message(self.request, messages.SUCCESS, message)
         return super(AddPost, self).form_valid(form)
@@ -71,11 +72,11 @@ class PostDetail(View):
         """
         post = get_object_or_404(Post, slug=slug)
         comments = post.comments.order_by('created_on')
-        # If the user has liked the post, set 'liked' True
+        # ユーザーが「いいね」していたら 'liked' をTrueに設定
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
-        # If the user has bookmarked the post, set 'bookmarked' True
+        # ユーザーがブックマークしていたら 'bookmarked' をTrueに設定
         bookmarked = False
         if post.bookmark.filter(id=self.request.user.id).exists():
             bookmarked = True
@@ -116,11 +117,11 @@ class PostDetail(View):
             comment.post = post
             comment.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'You posted a comment.')
+                                 'コメントが投稿されました。')
         else:
             comment_form = CommentForm()
-            messages.add_message(request, messages.INFO, "Error occurred." +
-                                 " Your comment was not saved.")
+            messages.add_message(request, messages.INFO, "エラー発生。" +
+                                 "コメントは保存されませんでした。")
         return render(
             request,
             "blog/post_detail.html",
@@ -265,8 +266,8 @@ class UpdateComment(LoginRequiredMixin, UserPassesTestMixin, View):
             updated.save()
         else:
             comment_form = CommentForm()
-            messages.add_message(request, messages.INFO, "エラーが起きました。" +
-                                 "変更内容は保存されていません。")
+            messages.add_message(request, messages.INFO, "エラー発生。" +
+                                 "変更内容は保存されませんでした。")
         return HttpResponseRedirect(reverse('detail_page', args=[slug]))
 
     def test_func(self):
@@ -406,7 +407,7 @@ class RecentPosts(generic.ListView):
 
 class PopularPosts(generic.ListView):
     """
-    16行目に指定された数以上の「いいね」を集めた記事を新しいものから表示
+    17行目に指定された数以上の「いいね」を集めた記事を新しいものから表示
     """
     model = Post
     template_name = "blog/popular_posts.html"

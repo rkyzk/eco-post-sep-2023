@@ -45,7 +45,7 @@
                     <li><a class="list_item" href="{% url 'home' %}">ホーム</a></li>
                     <li><a class="list-item" href="{% url 'search' %}">記事を検索</a></li>
                     {% if user.is_authenticated %}
-                    <li><a class="list-item" href="{% url 'add_story' %}">記事を投稿</a></li>
+                    <li><a class="list-item" href="{% url 'add_story' %}">記事を書く</a></li>
                     <li><a class="list-item" href="{% url 'my_page' user.pk %}">マイページ</a></li>
                     <li><a class="list-item" href="{% url 'account_logout' %}">ログアウト</a></li>
                     {% else %}
