@@ -162,7 +162,7 @@ footer {
 }
 
 /*   ------------ index.html ------------------------  */
-h1 {
+.site-title {
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 3rem;
     color: rgb(141, 111, 56);
@@ -204,6 +204,12 @@ h1 {
 }
 
 /* -------------- post_detail.html -------------------*/
+
+.title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: rgb(141, 111, 56);
+    font-size: 2rem;
+}
 
 .date-city>ul {
     list-style: none;
@@ -470,7 +476,7 @@ h1 {
 }
 
 @media screen and (max-width: 500px) {
-    h1 {
+    .site-title {
         font-size: 2.5rem;
     }
 

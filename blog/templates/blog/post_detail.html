@@ -5,7 +5,7 @@
     <div class="content">
         <section class="d-md-flex title-img-box">
             <div class="title-box">
-                <h1>{{ post.title }}</h1>
+                <h1 class="title">{{ post.title }}</h1>
                 <div>
                     <span class="text-secondary"><em>投稿者: {{ post.author }}</em></span>
                     <div class="date-city d-flex justify-content-end text-secondary">
@@ -105,7 +105,7 @@
                     {% if comment.comment_status != 2 %}
                     <div class="d-flex justify-content-between mb-2">
                         <span>{{ comment.commenter }}:</span>
-                        <span>{{ comment.created_on|date:'M d, Y' }}</span>
+                        <span>{{ comment.created_on|date:'Y' }}年{{ comment.created_on|date:'Md' }}日</span>
                     </div>
                     {% if comment.comment_status == 1 %}
                     <!-- 編集済み -->
