@@ -50,6 +50,11 @@
     background-color: #fff;
 }
 
+h1 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: rgb(141, 111, 56);
+}
+
 h2 {
     font-family: 'Lato', sans-serif;
     color: rgb(78, 75, 70);
@@ -140,6 +145,17 @@ footer {
     color: #fff;
 }
 
+.blue-btn {
+    background-color: rgb(73, 171, 196);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 100px;
+    min-width: 100px;
+    border: none;
+    outline: none;
+}
+
 .beige-btn:hover {
     background-color: rgb(69, 61, 15);
     opacity: 0.8;
@@ -163,9 +179,7 @@ footer {
 
 /*   ------------ index.html ------------------------  */
 .site-title {
-    font-family: 'Montserrat Alternates', sans-serif;
     font-size: 3rem;
-    color: rgb(141, 111, 56);
 }
 
 .earth {
@@ -507,7 +521,7 @@ footer {
 
 @media screen and (max-width: 420px) {
 
-    .search-contnet,
+    .search-content,
     .individual-post,
     .content,
     .img-box {

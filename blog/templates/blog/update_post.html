@@ -9,10 +9,10 @@
             {{ form | crispy }}
             <div class="mt-3">
                 <div class="update-post-btn-box">
-                    <button type="submit" class="beige-btn update-post-btn" name="save" value="draft">保存</button>
-                    <button type="submit" class="beige-btn update-post-btn submit-post" name="publish"
+                    <button type="submit" class="blue-btn update-post-btn" name="save" value="draft">保存</button>
+                    <button type="submit" class="blue-btn update-post-btn submit-post" name="publish"
                         value="complete">投稿</button>
-                    <a href="{% url 'detail_page' post.slug %}" class="beige-btn cancel">編集をキャンセル</a>
+                    <a href="{% url 'detail_page' post.slug %}" class="blue-btn cancel">編集をキャンセル</a>
                 </div>
             </div>
         </form>

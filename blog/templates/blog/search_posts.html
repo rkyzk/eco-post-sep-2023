@@ -1,20 +1,18 @@
 {% extends "blog/base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-<div class="d-flex justify-content-center">
-    <div class="content mt-4">
+<div class="container d-flex justify-content-center">
+    <div class="mt-4">
         <h1>記事を検索</h1>
         <!-- Search form -->
-        <form method="get" class="search-form">
-            <div class="row mt-2">
-                <div class="col-md-6 col-12 form-lable-group">
-                    {{postForm.form.title.label_tag}}
-                    {% render_field postForm.form.title class="form-control" %}
-                </div>
-                <div class="col-md-6 col-12 form-lable-group">
-                    {{postForm.form.author__username.label_tag}}
-                    {% render_field postForm.form.author__username class="form-control" %}
-                </div>
+        <form method="get">
+            <div class="mt-2 form-lable-group">
+                {{postForm.form.title.label_tag}}
+                {% render_field postForm.form.title class="form-control" %}
+            </div>
+            <div class="mt-2 form-lable-group">
+                {{postForm.form.author__username.label_tag}}
+                {% render_field postForm.form.author__username class="form-control" %}
             </div>
             <div class="row mt-2">
                 <div class="col-md-6 col-12 form-lable-group">
@@ -51,8 +49,8 @@
                     {% render_field postForm.form.category class="form-control" %}
                 </div>
             </div>
-            <button class="beige-btn mt-3" type="submit" name="search">検索</button>
-            <button class="beige-btn mt-3 btn-right" type="submit">フォームをクリア</button>
+            <button class="blue-btn mt-3" type="submit" name="search">検索</button>
+            <button class="blue-btn mt-3 btn-right" type="submit">フォームをクリア</button>
         </form>
         <!-- 検索結果 -->
         {% if search %}
