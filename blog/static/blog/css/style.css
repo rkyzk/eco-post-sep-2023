@@ -183,9 +183,61 @@ footer {
 }
 
 .earth {
-    width: 150px;
-    height: auto;
-    padding-left: 20px;
+    width: 140px;
+    height: 140px;
+    margin-left: 20px;
+}
+
+.heading-row {
+    height: 160px;
+    justify-content: space-around;
+}
+
+.heading {
+    width: 430px;
+    padding-left: 30px;
+}
+
+.left-leaves,
+.right-leaves {
+    width: 265px;
+}
+
+.right-leaves {
+    padding-left: 70px;
+}
+
+.leaf-2 {
+    width: 110px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.leaf-4 {
+    width: 110px;
+    height: 40px;
+    margin-top: 90px;
+    margin-left: -30px;
+}
+
+.purple-leaf {
+    width: 85px;
+    height: 70px;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+
+.leaf-3 {
+    width: 85px;
+    height: 90px;
+    margin-top: 55px;
+    margin-right: 15px;
+}
+
+.leaf-5 {
+    width: 95px;
+    height: 70px;
+    margin-top: 40px;
 }
 
 .intro-box {
@@ -354,6 +406,14 @@ footer {
     }
 }
 
+@media (max-width: 960px) {
+
+    .left-leaves,
+    .right-leaves {
+        display: none !important;
+    }
+}
+
 @media (max-width: 767px) {
 
     .individual-post,
@@ -496,9 +556,9 @@ footer {
 
     /* ------ index.html ----------------------*/
     .earth {
-        width: 30%;
-        height: auto;
-        padding-left: 15px;
+        width: 100px;
+        height: 100px;
+        margin-left: 15px;
     }
 
     /* ------- Update Post ------------------------*/
