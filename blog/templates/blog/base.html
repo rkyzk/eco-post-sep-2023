@@ -30,33 +30,41 @@
 </head>
 
 <body>
-    <!-- Navigation bar -->
     <header class="header">
-        <div class="mobile-header">
-            <a href="{% url 'home' %}">
-                <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1696816690/eco-post-logo.png"
-                    class="logo ml-3" alt="logo(tree image)">
-            </a>
-            <button class="hamburger" id="hamburger" onclick="openMenu()">|||</button>
-        </div>
-        <nav id="nav-menu">
-            <div class="pop-up-menu">
-                <ul class="nav-list">
-                    <li><a class="list_item" href="{% url 'home' %}">ホーム</a></li>
-                    <li><a class="list-item" href="{% url 'search' %}">記事を検索</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a class="list-item" href="{% url 'add_story' %}">記事を書く</a></li>
-                    <li><a class="list-item" href="{% url 'my_page' user.pk %}">マイページ</a></li>
-                    <li><a class="list-item" href="{% url 'account_logout' %}">ログアウト</a></li>
-                    {% else %}
-                    <li><a class="list-item" href="{% url 'account_signup' %}">メンバー登録</a></li>
-                    <li><a class="list-item" href="{% url 'account_login' %}">ログイン</a></li>
-                    {% endif %}
-                </ul>
+        <div class="mobile-header d-flex align-items-center">
+            <div class="d-flex align-items-center left-leaves ml-3">
+                <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-2.png" class="leaf-1"
+                    alt="leaf">
+                <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-4.png" class="leaf-2"
+                    alt="leaf">
+                <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/purple-leaf.png"
+                    class="purple-leaf" alt="leaf">
             </div>
-        </nav>
+            <div class="heading d-flex align-items-center">
+                <h1 style="white-space: nowrap;">eco post</h1>
+                <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891794/blue-earth_dvkptz.png"
+                    class="earth" alt="blue and green earth">
+            </div>
+            <button class="hamburger" id="hamburger" onclick="openMenu()">|||</button>
+            <nav id="nav-menu">
+                <div class="pop-up-menu">
+                    <ul class="nav-list">
+                        <li><a class="list_item" href="{% url 'home' %}">ホーム</a></li>
+                        <li><a class="list-item" href="{% url 'search' %}">検索</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a class="list-item" href="{% url 'add_story' %}">記事を投稿</a></li>
+                        <li><a class="list-item" href="{% url 'my_page' user.pk %}">マイページ</a></li>
+                        <li><a class="list-item" href="{% url 'account_logout' %}">ログアウト</a></li>
+                        {% else %}
+                        <li><a class="list-item" href="{% url 'account_signup' %}">メンバー登録</a></li>
+                        <li><a class="list-item" href="{% url 'account_login' %}">ログイン</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
-    <!-- Message -->
+    <!-- メッセージ -->
     <div class="container d-flex justify-content-center">
         {% for message in messages %}
         <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
@@ -69,7 +77,7 @@
         {% endblock content %}
     </div>
     <footer>
-        <!-- links to social networks -->
+        <!-- Twitter, Facebook などへのリンク -->
         <ul class="social-networks d-flex justify-content-center">
             <li class="mx-2 mt-3">
                 <a href="https://www.facebook.com" target="_blank" rel="noopener"

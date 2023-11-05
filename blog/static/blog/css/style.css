@@ -1,23 +1,24 @@
-/* Common rules for multiple pages */
+/* 全ページ共通 */
+h2 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: rgb(141, 111, 56);
+}
+
+h4 {
+    font-family: 'Lato', sans-serif;
+}
+
+/* base.html */
 .block-content {
     min-height: 85vh;
 }
 
-.logo {
-    width: 55px;
-    height: auto;
-}
-
+/* header */
 .header {
-    display: flex;
+    height: 150px;
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px 0;
-}
-
-#nav-menu {
-    margin-top: 10px;
 }
 
 .nav-list {
@@ -45,24 +46,72 @@
 .hamburger {
     display: none;
     border: none;
+    font-size: 1.5rem;
     rotate: 90deg;
-    color: rgb(65, 60, 53);
+    color: rgb(153, 139, 59);
     background-color: #fff;
+}
+
+.mobile-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading {
+    margin-top: 40px;
+    width: 440px;
+    position: absolute;
+    left: 35%;
 }
 
 h1 {
     font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 3rem;
     color: rgb(141, 111, 56);
 }
 
-h2 {
-    font-family: 'Lato', sans-serif;
-    color: rgb(78, 75, 70);
-    font-size: 1.6rem;
+.earth {
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
 }
 
-h4 {
-    font-family: 'Lato', sans-serif;
+.left-leaves {
+    width: 280px;
+}
+
+.leaf-1 {
+    width: 110px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.leaf-2 {
+    width: 110px;
+    height: 40px;
+    margin-top: 90px;
+    margin-left: -40px;
+}
+
+.purple-leaf {
+    width: 85px;
+    height: 70px;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+
+.leaf-3 {
+    width: 85px;
+    height: 90px;
+    margin-top: 30px;
+    margin-right: 15px;
+}
+
+.leaf-4 {
+    width: 95px;
+    height: 70px;
 }
 
 a,
@@ -86,13 +135,40 @@ a:hover,
     outline: none;
 }
 
+.like-btn,
+.bookmark {
+    width: 20px;
+    height: 20px;
+    margin-top: -3px;
+}
+
+.btn:focus,
+.btn:active {
+    box-shadow: none;
+}
+
+.num-likes {
+    margin: 3px 0 0 3px;
+}
+
 /* post excerpt */
 .space-left {
     margin-left: 5px;
 }
 
-.post-text>p {
+.space-right {
+    margin-right: 3px;
+}
+
+.post-title>p,
+.post-excerpt>p {
     line-height: 20px;
+}
+
+.post-title {
+    width: 100%;
+    height: 45px;
+    word-wrap: break-word;
 }
 
 .line {
@@ -107,8 +183,9 @@ a:hover,
     padding-right: 20px;
 }
 
-.excerpt-author {
-    margin-top: 5px;
+.excerpt-author,
+.likes {
+    white-space: nowrap;
 }
 
 .pub-date {
@@ -134,34 +211,25 @@ footer {
     display: block;
 }
 
-.beige-btn {
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem;
-    border-radius: 100px;
-    background-color: rgb(153, 139, 59);
-    min-width: 100px;
-    border: none;
-    outline: none;
-    color: #fff;
-}
-
 .blue-btn {
-    background-color: rgb(73, 171, 196);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem;
-    border-radius: 100px;
-    min-width: 100px;
+    padding: 0.3rem 0.6rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 80px;
+    background-color: rgb(33, 150, 154);
+    min-width: 90px;
     border: none;
     outline: none;
+    color: #fff;
 }
 
-.beige-btn:hover {
-    background-color: rgb(69, 61, 15);
+.blue-btn:hover {
+    background-color: rgb(201, 208, 213);
     opacity: 0.8;
     outline: none;
     border: none;
-    color: #fff;
+    color: #204966;
 }
 
 .btn-right {
@@ -172,74 +240,7 @@ footer {
     width: 80%;
 }
 
-.post-title {
-    height: 45px;
-    margin: 0;
-}
-
 /*   ------------ index.html ------------------------  */
-.site-title {
-    font-size: 3rem;
-}
-
-.earth {
-    width: 140px;
-    height: 140px;
-    margin-left: 20px;
-}
-
-.heading-row {
-    height: 160px;
-    justify-content: space-around;
-}
-
-.heading {
-    width: 430px;
-    padding-left: 30px;
-}
-
-.left-leaves,
-.right-leaves {
-    width: 265px;
-}
-
-.right-leaves {
-    padding-left: 70px;
-}
-
-.leaf-2 {
-    width: 110px;
-    height: 40px;
-    margin-top: 20px;
-}
-
-.leaf-4 {
-    width: 110px;
-    height: 40px;
-    margin-top: 90px;
-    margin-left: -30px;
-}
-
-.purple-leaf {
-    width: 85px;
-    height: 70px;
-    margin-top: 10px;
-    margin-left: -30px;
-}
-
-.leaf-3 {
-    width: 85px;
-    height: 90px;
-    margin-top: 55px;
-    margin-right: 15px;
-}
-
-.leaf-5 {
-    width: 95px;
-    height: 70px;
-    margin-top: 40px;
-}
-
 .intro-box {
     color: rgb(79, 73, 73);
     width: 730px
@@ -250,15 +251,11 @@ footer {
 }
 
 .posts {
-    margin-top: 40px;
-}
-
-.posts-mt {
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .space-right {
-    margin-right: 3px;
+    margin-right: 4px;
 }
 
 .links-to-posts {
@@ -269,12 +266,15 @@ footer {
     font-size: 1.4rem;
 }
 
-/* -------------- post_detail.html -------------------*/
+.big-space-right {
+    margin-right: 10px;
+}
 
-.title {
-    font-family: 'Montserrat Alternates', sans-serif;
-    color: rgb(141, 111, 56);
-    font-size: 2rem;
+/* -------------- post_detail.html -------------------*/
+.title-box>h1 {
+    word-wrap: break-word;
+    font-size: 2.2rem;
+    font-weight: 500;
 }
 
 .date-city>ul {
@@ -313,34 +313,23 @@ footer {
     margin-left: 4px;
 }
 
-.bookmark-text {
-    margin-top: 15px;
-}
-
 .heart {
     color: #d87979;
 }
 
-/* ---------- search.html -------------------------*/
+.update-form {
+    width: 85%;
+    margin-right: 8px;
+}
 
+/* ---------- search.html -------------------------*/
 .item-right {
     margin-left: 10px;
 }
 
 .warning {
     color: red;
-}
-
-.pub-date-range label {
-    display: none;
-}
-
-.pub-range {
-    margin-top: 28px;
-}
-
-.pub-before {
-    margin-top: 22px;
+    margin-left: 10%;
 }
 
 /* ----------- update_post.html -------------------*/
@@ -358,18 +347,12 @@ footer {
     color: #fff;
 }
 
-/* ---------------- update comment ---------------------*/
-.cancel-comment {
-    position: relative;
-    top: 3px;
-}
-
 /* ---------------- my page -----------*/
 .show-posts {
     margin-top: 50px;
 }
 
-.date-coty {
+.date-city {
     width: 100%;
 }
 
@@ -377,9 +360,65 @@ footer {
     padding-top: 40px;
 }
 
-@media screen and (max-width: 1200px) {
-    .content {
-        width: 95%;
+@media screen and (min-width: 1161px) {
+    #nav-menu {
+        display: block !important;
+        width: 470px;
+        margin-top: 50px;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .heading {
+        left: 25%;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .hamburger {
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        position: absolute;
+        top: 53px;
+        right: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+
+    .heading {
+        left: 40%;
+    }
+
+    .nav-menu {
+        position: relative;
+    }
+
+    .pop-up-menu {
+        background-color: #f8f8f8;
+        opacity: 0.9;
+        position: absolute;
+        top: 100px;
+        right: 15px;
+        z-index: 2;
+        padding: 5px 8px;
+    }
+
+    .nav-list {
+        grid-auto-flow: row;
+        list-style-type: none;
+        row-gap: 10px;
+        column-gap: 0;
+        justify-items: start;
+    }
+
+    #nav-menu {
+        display: none;
     }
 }
 
@@ -389,7 +428,7 @@ footer {
     }
 
     .content {
-        width: 100%;
+        width: 90%;
     }
 
     .comments-left {
@@ -402,15 +441,25 @@ footer {
     }
 
     .intro-box {
-        width: 90%;
+        width: 85%;
     }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 767px) {
+    .post-title {
+        height: auto;
+    }
+}
 
-    .left-leaves,
-    .right-leaves {
+@media (max-width: 705px) {
+    .left-leaves {
         display: none !important;
+    }
+
+    .heading {
+        margin-left: 30px;
+        position: static;
+        justify-content: start;
     }
 }
 
@@ -431,15 +480,7 @@ footer {
         margin-bottom: 40px;
     }
 
-    .line-for-lg {
-        display: none;
-    }
-
     /* -------- index --------------- */
-    .intro-box {
-        width: 100%;
-    }
-
     .links-to-posts {
         margin-top: 0;
     }
@@ -450,10 +491,6 @@ footer {
 
     .posts {
         margin-top: 20px;
-    }
-
-    .posts-mt {
-        margin-top: 10px;
     }
 
     /* ------- post_detail.html --------------*/
@@ -472,61 +509,11 @@ footer {
     }
 }
 
-@media screen and (max-width: 700px) {
-    .hamburger {
-        display: block;
-    }
-
-    .mobile-header {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .header {
-        flex-direction: column;
-        padding: 20px;
-        position: relative;
-    }
-
-    .pop-up-menu {
-        background-color: #f8f8f8;
-        opacity: 0.9;
-        position: absolute;
-        top: 50px;
-        right: 50px;
-        z-index: 2;
-        padding: 5px 8px;
-    }
-
-    .nav-list {
-        grid-auto-flow: row;
-        list-style-type: none;
-        row-gap: 10px;
-        column-gap: 0;
-        justify-items: start;
-    }
-
-    #nav-menu {
-        display: none;
-    }
-
-    .block-content {
-        margin-top: 20px;
-    }
-}
-
-@media screen and (min-width: 701px) {
-    #nav-menu {
-        display: block !important;
-    }
-
-    .content {
-        width: 90%;
-    }
-}
-
 @media screen and (max-width: 575px) {
+    .intro-box {
+        width: 95%;
+    }
+
     .featured-heading {
         margin-left: 20px;
     }
@@ -543,22 +530,33 @@ footer {
     .authentication {
         width: 90%;
     }
-
-    .content {
-        width: 80%;
-    }
 }
 
 @media screen and (max-width: 500px) {
-    .site-title {
+    h1 {
         font-size: 2.5rem;
     }
 
-    /* ------ index.html ----------------------*/
+    .heading {
+        width: 300px;
+        margin: 30px 0 0 15px;
+    }
+
     .earth {
-        width: 100px;
-        height: 100px;
-        margin-left: 15px;
+        height: 85px;
+        width: 85px;
+    }
+
+    .header {
+        padding: 0 0 0 15px;
+    }
+
+    .hamburger {
+        top: 35px;
+    }
+
+    .pop-up-menu {
+        top: 40px;
     }
 
     /* ------- Update Post ------------------------*/
@@ -580,12 +578,28 @@ footer {
 }
 
 @media screen and (max-width: 420px) {
+    .hamburger {
+        top: 10px;
+    }
+
+    .pop-up-menu {
+        top: 60px;
+        right: 8px;
+    }
+
+    .heading {
+        margin-top: 60px;
+    }
+
+    .featured-heading {
+        margin-left: 10px;
+    }
 
     .search-content,
     .individual-post,
     .content,
     .img-box {
-        width: 100%;
+        width: 95%;
     }
 
     .link-to-favorites {

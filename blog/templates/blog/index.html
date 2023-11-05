@@ -1,28 +1,10 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<!-- heading -->
-<div class="heading-row d-flex">
-    <div class="d-flex align-items-center left-leaves">
-        <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-2.png" class="leaf-2" alt="leaf">
-        <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-4.png" class="leaf-4" alt="leaf">
-        <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/purple-leaf.png" class="purple-leaf"
-            alt="leaf">
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-        <h1 class="site-title align-self-center">eco post</h1>
-        <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891794/blue-earth_dvkptz.png" class="earth"
-            alt="blue and green earth">
-    </div>
-    <div class="d-flex right-leaves">
-        <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952373/leaf-3.png" class="leaf-3" alt="leaf">
-        <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952373/leaf-5.png" class="leaf-5" alt="leaf">
-    </div>
-</div>
-<!-- Introduction -->
+<!-- 冒頭の説明 -->
 <div class="container d-flex justify-content-center">
     <div class="intro-box mt-2">
         <hr>
-        <p>自然破壊・気候変動のニュースを耳にし、暗くなってませんか？このサイトは、環境を守るために個人が暮らしの中でできることを
+        <p>自然破壊・気候変動のニュースを耳にして、暗くなってませんか？このサイトは、環境を守るために個人が暮らしの中でできることを
             シェアするためのサイトです。環境を守る活動されている方が、活動内容を紹介したり、
             個人が普段の生活の中でできることを提案したりしてください。
             どのような取り組みが行われているか読むことで、暗くならずに「できることをしよう」と
@@ -33,7 +15,7 @@
         <hr>
     </div>
 </div>
-<!-- Featured stories -->
+<!-- おすすめ記事 -->
 <div class="container d-flex justify-content-center mt-5">
     <div class="content">
         <h2 class="featured-heading">おすすめ記事</h2>
@@ -48,7 +30,7 @@
                     <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
                     {% endif %}
                 </div>
-                <div class="mx-2 mt-2 post-text">
+                <div class="mx-2 mt-2">
                     <p class="post-title"><strong>{{ post.title }}</strong></p>
                     <span class="text-secondary mr-1 space-left"><i class="far fa-heart"></i></span>
                     <span class="text-secondary">{{ post.num_of_likes }}</span><br>
@@ -64,7 +46,7 @@
             {% empty %}
             <p>記事なし</p>
             {% endfor %}
-            <!-- links to 'Recent Stories' and 'Popular Stories' -->
+            <!-- 今週の記事と人気の記事へのリンク -->
             <div class="links-to-posts">
                 <a href="{% url 'recent_stories' %}">
                     <p>今週の記事をもっと読む &raquo;</p>
