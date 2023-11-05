@@ -94,6 +94,8 @@
             <p>記事なし</p>
             {% endfor %}
         </div>
+        <!-- 検索結果６件以上の場合、次・前ページへのリンクを表示 -->
+        {% include "blog/pagination.html" %}
         {% endif %}
         {% endif %}
     </div>

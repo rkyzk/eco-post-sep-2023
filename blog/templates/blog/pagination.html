@@ -1,0 +1,16 @@
+<!-- ６件以上のブログがある場合、2ページ以上に分けて表示するため次・前ページへのリンクを表示 -->
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <div class="pagination justify-content-center mt-4">
+        {% if page_obj.has_previous %}
+        <span><a href="?page={{page_obj.previous_page_number}}" class="item-left">&laquo; PREV</a></span>
+        {% endif %}
+        <span class="page-current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+        {% if page_obj.has_next %}
+        <span><a href="?page={{page_obj.next_page_number}}" class="item-right">NEXT &raquo;</a></span>
+        {% endif %}
+    </div>
+</nav>
+{% endif %}
