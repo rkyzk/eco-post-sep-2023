@@ -1,143 +1,20 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<!-- Posts written by the user -->
 <div class="container d-flex justify-content-center">
     <div class="my-page">
         <h1 class="mt-5">マイページ</h1>
-        <h2 class="mt-5 mb-3">私が書いた記事</h2>
-        <div class="row">
-            {% for post in my_posts %}
-            {% include "blog/post_excerpt.html" %}
-            <!-- If there are more than 3 posts in this category, display them when 'Show more' button is clicked. -->
-            {% if my_posts|length > 3 %}
-            {% if forloop.counter == 3 %}
-        </div>
-        <button id="show-my-posts" class="btn btn-link show-posts mb-4 show">すべて表示
-            <span><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </button>
-        <div id="my-posts" class="hide more-posts">
-            <div class="row mt-2">
-                {% elif forloop.last %}
-            </div>
-            <button class="btn btn-link hide-posts mt-5">非表示
-                <span><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-            </button>
-            {% elif forloop.counter > 3 %}
-            {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <hr class="line-for-lg">
-        <div class="row mt-2">
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% empty %}
-            <p>記事なし</p>
-            {% endfor %}
-        </div>
-        <!-- Commented Posts -->
-        <hr>
-        <h2 class="mt-5 mb-3">コメントした記事</h2>
-        <div class="row">
-            {% for post in commented_posts %}
-            <div class="col-md-4 individual-post">
-                <div class="image-wrapper d-flex justify-content-center">
-                    {% if 'default' in post.featured_image.url %}
-                    <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891851/default-img_ojmwhd.jpg"
-                        class="card-img-top" alt="forest image">
-                    {% else %}
-                    <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
-                    {% endif %}
-                </div>
-                <div class="mx-2 mt-2 post-text">
-                    <span><strong>{{ post.title }}</strong></span>
-                    <span class="text-secondary mr-1 space-left"><i class="far fa-heart"></i></span>
-                    <span class="text-secondary">{{ post.num_of_likes }}</span><br>
-                    <span class="excerpt-author text-secondary">投稿者：{{ post.author }}</span>
-                    <div class="date-city d-flex justify-content-end">
-                        <p class="my-0 text-secondary">{{ post.pub_date }}</p>
-                    </div>
-                    <p class="mt-1 excerpt">{{ post.excerpt }}</p>
-                    <a href="{% url 'detail_page' post.slug %}">記事を読む</a>
-                </div>
-                <hr class="line">
-            </div>
-            {% if commented_posts|length > 3 %}
-            {% if forloop.counter == 3 %}
-        </div>
-        <button class="btn btn-link show-posts mb-4 show">もっと表示
-            <span><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="hide more-posts">
-            <div class="row mt-2">
-                {% elif forloop.last %}
-            </div>
-            <button class="btn btn-link hide-posts mt-5">非表示
-                <span><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-            </button>
-            {% elif forloop.counter > 3 %}
-            {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <hr class="line-for-lg">
-        <div class="row mt-2">
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% empty %}
-            <p>記事なし</p>
-            {% endfor %}
-        </div>
-        <!-- Bookmarked Posts -->
-        <hr>
-        <h2 class="mt-5 mb-3">ブックマークした記事</h2>
-        <div class="row">
-            {% for post in bookmarked_posts %}
-            <div class="col-md-4 individual-post">
-                <div class="image-wrapper d-flex justify-content-center">
-                    {% if 'default' in post.featured_image.url %}
-                    <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891851/default-img_ojmwhd.jpg"
-                        class="card-img-top" alt="forest image">
-                    {% else %}
-                    <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
-                    {% endif %}
-                </div>
-                <div class="mx-2 mt-2 post-text">
-                    <span><strong>{{ post.title }}</strong></span>
-                    <span class="text-secondary mr-1 space-left"><i class="far fa-heart"></i></span>
-                    <span class="text-secondary">{{ post.num_of_likes }}</span><br>
-                    <span class="excerpt-author text-secondary">投稿者: {{ post.author }}</span>
-                    <div class="date-city d-flex justify-content-end">
-                        <p class="my-0 text-secondary">{{ post.pub_date }}</p>
-                    </div>
-                    <p class="mt-1 excerpt">{{ post.excerpt }}</p>
-                    <a href="{% url 'detail_page' post.slug %}">記事を読む</a>
-                </div>
-                <hr class="line">
-            </div>
-            {% if bookmarked_posts|length > 3 %}
-            {% if forloop.counter == 3 %}
-        </div>
-        <button class="btn btn-link show-posts mb-4 show">すべて表示
-            <span><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="hide more-posts">
-            <div class="row mt-2">
-                {% elif forloop.last %}
-            </div>
-            <button class="btn btn-link hide-posts mt-5">非表示
-                <span><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-            </button>
-            {% elif forloop.counter > 3 %}
-            {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <hr class="line-for-lg">
-        <div class="row mt-2">
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% empty %}
-            <p>記事なし</p>
-            {% endfor %}
-        </div>
+        <!-- ユーザーが書いた記事 -->
+        <h2 class="mt-5 mb-3"><i class="fa-brands fa-pagelines big-space-right"></i>私が書いた記事</h2>
+        {% include "blog/my_page_template.html" with posts=my_posts only %}
+        <hr class="d-none d-lg-block mt-5">
+        <!-- コメントした記事 -->
+        <h2 class="mt-5 mb-3"><i class="fa-brands fa-pagelines big-space-right"></i>コメントした記事</h2>
+        {% include "blog/my_page_template.html" with posts=commented_posts only %}
+        <hr class="d-none d-lg-block mt-5">
+        <!-- ブックマークした記事 -->
+        <h2 class="mt-5 mb-3"><i class="fa-brands fa-pagelines big-space-right"></i>ブックマークした記事</h2>
+        {% include "blog/my_page_template.html" with posts=bookmarked_posts only %}
+        <hr class="d-none d-lg-block mt-5">
     </div>
 </div>
 {% endblock %}
