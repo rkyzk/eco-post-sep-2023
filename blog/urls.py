@@ -7,9 +7,9 @@ from django.urls import path
 urlpatterns = [
   path('', views.PostList.as_view(), name='home'),
   path('add_story/', views.AddPost.as_view(), name='add_story'),
-  path('recent_stories/', views.RecentPosts.as_view(), name='recent_stories'),
-  path('popular_stories/', views.PopularPosts.as_view(),
-       name='popular_stories'),
+  path('recent_posts/', views.RecentPosts.as_view(), name='recent_posts'),
+  path('popular_posts/', views.PopularPosts.as_view(),
+       name='popular_posts'),
   path('search/', views.SearchPosts.as_view(), name='search'),
   path('my_page/<int:pk>/', views.MyPage.as_view(), name='my_page'),
   path('update/<slug:slug>/', views.UpdatePost.as_view(),

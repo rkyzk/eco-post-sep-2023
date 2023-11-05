@@ -4,7 +4,7 @@
 <div class="container d-flex justify-content-center">
     <div class="mt-4">
         <h1>記事を検索</h1>
-        <!-- Search form -->
+        <!-- 検索フォーム -->
         <form method="get">
             <div class="mt-2 form-lable-group">
                 {{postForm.form.title.label_tag}}
@@ -61,33 +61,11 @@
             <h2>検索結果</h2>
             {% for post in posts %}
             <!-- １行に３記事表示 -->
-            <div class="col-md-4 individual-post mt-3">
-                <div class="image-wrapper d-flex justify-content-center">
-                    {% if 'default' in post.featured_image.url %}
-                    <img class="card-img-top"
-                        src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891851/default-img_ojmwhd.jpg"
-                        alt="forest">
-                    {% else %}
-                    <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
-                    {% endif %}
-                </div>
-                <div class="mx-2 mt-2 post-text">
-                    <span><strong>{{ post.title }}</strong></span>
-                    <span class="item-right text-secondary mr-1"><i class="far fa-heart"></i></span>
-                    <span class="text-secondary">{{ post.num_of_likes }}</span><br>
-                    <span class="excerpt-author">by {{ post.author }}</span>
-                    <div class="d-flex justify-content-end pub-date">
-                        <span>{{ post.pub_date }}</span>
-                    </div>
-                    <p class="mt-1 excerpt">{{ post.excerpt }}</p>
-                    <a href="{% url 'detail_page' post.slug %}">記事を読む</a>
-                </div>
-                <hr class="line">
-            </div>
+            {% include "blog/post_excerpt.html" %}
             <!-- ３記事ごとに新しい行 -->
             {% if forloop.counter|divisibleby:3 %}
         </div>
-        <hr class="line-for-lg">
+        <hr class="d-none d-lg-block mt-5">
         <div class="row posts">
             {% endif %}
             {% empty %}
