@@ -87,11 +87,10 @@
                     {% csrf_token %}
                     <button class="blue-btn" name="update-post" type="submit">更新</button>
                 </form>
-                <form method="POST" id="delete-post" action="{% url 'delete_post' post.slug %}">
-                    {% csrf_token %}
-                    <button type="submit" class="blue-btn btn-right" name="delete_post"
-                        value="{{post.slug}}">削除</button>
-                </form>
+                <button type="button" class="btn blue-btn btn-right modal-btn" name="post" data-bs-toggle="modal"
+                    data-bs-target="#confirm-delete">
+                    削除
+                </button>
             </div>
             {% endif %}
         </section>
@@ -165,4 +164,21 @@
         </section>
     </div>
 </main>
+<!-- 削除確認ダイアログ -->
+<div class="modal fade" id="confirm-delete" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>記事を削除して良いですか？データは完全に削除されます。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue-btn" data-bs-dismiss="modal">キャンセル</button>
+                <form method="POST" action="{% url 'delete_post' post.slug %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn blue-btn">削除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -798,8 +798,8 @@ class SearchPosts(View):
 
 class RecentPosts(generic.ListView):
     """
-    Get posts published in the past 7 days from DB,
-    send the queryset and display 'Recent Posts' page.
+    過去7日に投稿された記事を取得
+    「今週の記事」ページを表示
     """
     model = Post
     template_name = "blog/paginated_posts_list.html"
