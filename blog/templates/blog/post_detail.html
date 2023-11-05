@@ -107,9 +107,9 @@
                         <span>{{ comment.created_on|date:'M d, Y' }}</span>
                     </div>
                     {% if comment.comment_status == 1 %}
-                    <span class="text-muted"><em>edited</em></span>
+                    <span class="text-muted"><em>更新済み</em></span>
                     {% endif %}
-                    <span class="text-muted hide"><em>edited</em></span>
+                    <span class="text-muted hide"><em>更新済み</em></span>
                     <div class="comment-form">{{ comment.body | linebreaks }}</div>
                     <!-- ログインユーザーのコメントには更新・削除アイコンを表示 -->
                     {% if comment.commenter == user %}

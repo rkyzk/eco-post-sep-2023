@@ -21,6 +21,8 @@ urlpatterns = [
        name='bookmark'),
   path('detail/<slug:slug>/get_comment/',
        views.getComment, name='get_comment'),
+  path('detail/<slug:slug>/update_comment/',
+       views.updateComment, name='update_comment'),
   path('delete_comment/comment<int:id>/', views.DeleteComment.as_view(),
        name='delete_comment'),
   path('detail/<slug:slug>/', views.PostDetail.as_view(), name='detail_page')

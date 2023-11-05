@@ -649,7 +649,7 @@ class DeletePost(LoginRequiredMixin, View):
 
 
 def getComment(request, slug):
-    """get comment and send it to be displayed when comment is being updated."""
+    """コメント更新フォームに表示するためコメントを取得"""
     if request.is_ajax and request.method == 'GET':
         id = request.GET['id']
         comment = get_object_or_404(Comment, id=id)
@@ -659,13 +659,17 @@ def getComment(request, slug):
         return JsonResponse(response)
 
 
-def getComment(request, slug):
-    """get comment and send it to be displayed when comment is being updated."""
-    if request.is_ajax and request.method == 'GET':
-        id = request.GET['id']
+def updateComment(request, slug):
+    """更新されたコメントをDBに保存"""
+    if request.is_ajax and request.method == 'POST':
+        id = request.POST['id']
         comment = get_object_or_404(Comment, id=id)
+        updatedCmmt = request.POST['comment']
+        comment.comment_status = 1
+        comment.body = updatedCmmt
+        comment.save()
         response = {
-            'content': comment.body
+            'message': 'Comment updated'
         }
         return JsonResponse(response)
 
@@ -736,18 +740,17 @@ class MyPage(LoginRequiredMixin, UserPassesTestMixin, View):
 
 
 class SearchPosts(View):
-    """Hold functions to search posts by multiple factors."""
+    """記事検索ページ"""
 
     def get(self, request, *args, **kwargs):
         """
-        Display "Search Stories" page, receive users' input,
-        run search based on the input, return a queryset of
-        the matching posts and display the search results.
+        記事検索ページを表示
+        ユーザーの入力内容で検索して結果を表示
         arguments: self, request, *args, **kwargs
         :returns: render()
         :rtype: method
         """
-        # get category choices for the select box
+        # セレクトボックスのカテゴリー項目を取得
         category_choices = Post._meta.get_field('category').choices
         categories = [cat[1] for cat in category_choices]
         # Get posts that have been published, arranged from the
