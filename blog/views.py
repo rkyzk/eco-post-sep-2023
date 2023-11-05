@@ -659,17 +659,13 @@ def getComment(request, slug):
         return JsonResponse(response)
 
 
-def updateComment(request, slug):
-    """update comments"""
-    if request.is_ajax and request.method == 'POST':
-        id = request.POST['id']
+def getComment(request, slug):
+    """get comment and send it to be displayed when comment is being updated."""
+    if request.is_ajax and request.method == 'GET':
+        id = request.GET['id']
         comment = get_object_or_404(Comment, id=id)
-        updatedCmmt = request.POST['comment']
-        comment.comment_status = 1
-        comment.body = updatedCmmt
-        comment.save()
         response = {
-            'message': 'Comment updated'
+            'content': comment.body
         }
         return JsonResponse(response)
 

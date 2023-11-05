@@ -75,7 +75,7 @@
                     {% endif %}
                     {% endif %}
                 </div>
-                <!--end of likes and bookmark -->
+                <!--　likes & bookmark -->
             </div> <!-- img-box -->
         </section>
         <section class="post-content mt-3">
@@ -104,18 +104,19 @@
                     {% if comment.comment_status != 2 %}
                     <div class="d-flex justify-content-between mb-2">
                         <span>{{ comment.commenter }}:</span>
-                        <span>{{ comment.created_on|date:'Y' }}年{{ comment.created_on|date:'Md' }}日</span>
+                        <span>{{ comment.created_on|date:'M d, Y' }}</span>
                     </div>
                     {% if comment.comment_status == 1 %}
-                    <!-- 編集済み -->
-                    <span class="text-muted"><em>編集済み</em></span>
+                    <span class="text-muted"><em>edited</em></span>
                     {% endif %}
+                    <span class="text-muted hide"><em>edited</em></span>
                     <div class="comment-form">{{ comment.body | linebreaks }}</div>
-                    <!-- ログインしているユーザだったら更新、削除ボタンを表示 -->
+                    <!-- ログインユーザーのコメントには更新・削除アイコンを表示 -->
                     {% if comment.commenter == user %}
-                    <div class="d-flex justify-content-end update-comment show">
+                    <div class="d-flex justify-content-end update-comment">
                         <div class="col-1">
-                            <button type="submit" class="btn btn-sm" name="update-comment" onclick="showForm()">
+                            <button type="submit" class="btn btn-sm edit-btn" data-id={{comment.id}}
+                                onClick="showCommentEditForm(this)">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </button>
                         </div>
@@ -129,9 +130,9 @@
                         </div>
                     </div>
                     {% endif %}
-                    <!-- コメントが削除されている場合 -->
+                    <!-- コメントが削除されていた場合 -->
                     {% else %}
-                    <p class="text-muted mb-2"><em>このコメントは取り消されました</em></p>
+                    <p class="text-muted mb-2"><em>このコメントは削除されました</em></p>
                     {% endif %}
                     <hr>
                 </div>
