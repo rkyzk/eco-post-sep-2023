@@ -7,37 +7,7 @@
         <h2 class="mt-5 mb-3">私が書いた記事</h2>
         <div class="row">
             {% for post in my_posts %}
-            <div class="col-md-4 individual-post">
-                <div class="image-wrapper d-flex justify-content-center">
-                    {% if 'default' in post.featured_image.url %}
-                    <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891851/default-img_ojmwhd.jpg"
-                        class="card-img-top" alt="forest image">
-                    {% else %}
-                    <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
-                    {% endif %}
-                </div>
-                <div class="mx-2 mt-2 post-text">
-                    <span><strong>{{ post.title }}</strong></span>
-                    <span class="text-secondary mr-1 space-left"><i class="far fa-heart"></i></span>
-                    <span class="text-secondary">{{ post.num_of_likes }}</span><br>
-                    <span class="excerpt-author text-secondary">投稿者:{{ post.author }}</span>
-                    <div class="date-city text-secondary d-flex justify-content-end">
-                        <div>
-                            {% if post.status == 1 %}
-                            <span>投稿日:</span>
-                            <p class="my-0">{{ post.pub_date }}</p>
-                            <!-- state if the post hasn't been published display the date written -->
-                            {% else %}
-                            <span>未投稿</span>
-                            <p class="my-0">{{ post.created_on|date:'M d, Y' }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <p class="mt-1 excerpt">{{ post.excerpt }}</p>
-                    <a href="{% url 'detail_page' post.slug %}">記事を読む</a>
-                </div>
-                <hr class="line">
-            </div>
+            {% include "blog/post_excerpt.html" %}
             <!-- If there are more than 3 posts in this category, display them when 'Show more' button is clicked. -->
             {% if my_posts|length > 3 %}
             {% if forloop.counter == 3 %}

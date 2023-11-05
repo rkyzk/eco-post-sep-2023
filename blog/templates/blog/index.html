@@ -21,28 +21,7 @@
         <h2 class="featured-heading">おすすめ記事</h2>
         <div class="row posts">
             {% for post in post_list %}
-            <div class="col-md-4 individual-post">
-                <div class="image-wrapper d-flex justify-content-center">
-                    {% if 'default' in post.featured_image.url %}
-                    <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891851/default-img_ojmwhd.jpg"
-                        class="card-img-top" alt="forest image">
-                    {% else %}
-                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
-                    {% endif %}
-                </div>
-                <div class="mx-2 mt-2">
-                    <p class="post-title"><strong>{{ post.title }}</strong></p>
-                    <span class="text-secondary mr-1 space-left"><i class="far fa-heart"></i></span>
-                    <span class="text-secondary">{{ post.num_of_likes }}</span><br>
-                    <span class="excerpt-author">by {{ post.author }}</span>
-                    <div class="d-flex justify-content-end pub-date">
-                        <span>{{ post.pub_date }}</span>
-                    </div>
-                    <p class="mt-1 excerpt">{{ post.excerpt }}</p>
-                    <a href="{% url 'detail_page' post.slug %}">記事を読む</a>
-                </div>
-                <hr class="line">
-            </div>
+            {% include "blog/post_excerpt.html" %}
             {% empty %}
             <p>記事なし</p>
             {% endfor %}
