@@ -17,7 +17,7 @@
         </span>
     </div>
     <div class="d-flex justify-content-end pub-date">
-        <span>{{ post.pub_date }}</span>
+        <span>{{ post.published_on|date:"Y-m-d" }}</span>
     </div>
     <div class="post-excerpt">
         <p class="mt-1 excerpt">{{ post.excerpt }}</p>

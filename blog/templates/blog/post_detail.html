@@ -12,11 +12,11 @@
                         <ul>
                             <!-- 記事が投稿されていたら投稿日を記載 -->
                             {% if post.status == 1 %}
-                            <li><em>投稿日: {{ post.pub_date }}</em></li>
+                            <li>投稿日: {{ post.published_on|date:"Y-m-d" }}</li>
                             {% else %}
                             <!-- 投稿されていなかったら、記事の作成日を記載 -->
                             <li><em>{{ post.status_value }}</em></li>
-                            <li><em>{{ post.created_on|date:'M d, Y' }}</em></li>
+                            <li><em>{{ post.created_on|date:"Y-m-d" }}</em></li>
                             {% endif %}
                             <li><em>{{ post.city }}</em></li>
                         </ul>
@@ -99,7 +99,7 @@
                     {% if comment.comment_status != 2 %}
                     <div class="d-flex justify-content-between mb-2">
                         <span>{{ comment.commenter }}:</span>
-                        <span>{{ comment.created_on|date:'M d, Y' }}</span>
+                        <span>{{ comment.created_on|date:'Y-m-d' }}</span>
                     </div>
                     {% if comment.comment_status == 1 %}
                     <span class="text-muted"><em>更新済み</em></span>
@@ -148,11 +148,13 @@
                 </form>
                 {% else %}
                 <!-- ログインしていなかったら、メンバ登録とサインインのリンクを表示 -->
-                <h2>コメントされたい方</h2>
+                <h2></h2>
                 <p>
+                    コメントされたい方は
                     <a href="{% url 'account_signup' %}">メンバー登録</a>
                     <span>または</span>
-                    <a href="{% url 'account_login' %}">サインイン</a>.
+                    <a href="{% url 'account_login' %}">サインイン</a>
+                    してください.
                 </p>
                 {% endif %}
             </div>

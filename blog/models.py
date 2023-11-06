@@ -110,7 +110,7 @@ class Post(models.Model):
         :rtype: str
         """
         if self.status == 1:
-            return self.published_on.strftime("%m/%d, %Y")
+            return str(self.published_on)[:-5]
         else:
             return '未投稿'
 
