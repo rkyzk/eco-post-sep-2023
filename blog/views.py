@@ -136,42 +136,34 @@ class PostDetail(View):
         )
 
 
-class PostLike(View):
-    """ポストモデルのプロパティlikeにユーザーを追加または削除"""
-
-    def post(self, request, slug, *args, **kwargs):
-        """
-        ユーザが「like」に存在していたら削除
-        存在していなかったら追加。
-        arguments: self, request, slug, *args, **kwargs
-        :return: HttpResponseRedirect
-        """
+def postLike(request, slug):
+    """ポストモデルの属性「likes」にユーザを追加または削除"""
+    if request.is_ajax and request.method == 'POST':
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
         post.save()
-        return HttpResponseRedirect(reverse('detail_page', args=[slug]))
+        response = {
+            'message': 'done'
+        }
+        return JsonResponse(response)
 
 
-class Bookmark(View):
-    """ポストモデルのプロパティ「bookmark」にユーザを追加または削除"""
-
-    def post(self, request, slug, *args, **kwargs):
-        """
-        ユーザが「bookmark」に存在していたら削除
-        存在していなかったら追加。
-        arguments: self, request, slug, *args, **kwargs
-        :return: HttpResponseRedirect()
-        :rtype: method
-        """
+def bookmark(request, slug):
+    """ユーザが「bookmark」に存在していたら削除、存在していなかったら追加。"""
+    if request.is_ajax and request.method == 'POST':
         post = get_object_or_404(Post, slug=slug)
         if post.bookmark.filter(id=request.user.id).exists():
             post.bookmark.remove(request.user)
         else:
             post.bookmark.add(request.user)
-        return HttpResponseRedirect(reverse('detail_page', args=[slug]))
+        post.save()
+        response = {
+            'message': 'done'
+        }
+        return JsonResponse(response)
 
 
 class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
@@ -548,8 +540,8 @@ class PostDetail(View):
 
 def postLike(request, slug):
     """
-    If user exists in 'likes' of the post, removes him/her.
-    If not, add the user to 'likes.'
+    Postモデルの属性'likes'にユーザーが存在していたら、削除し、
+    不在であれば追加する。
     arguments: self, request, slug, *args, **kwargs
     """
     if request.is_ajax and request.method == 'POST':
@@ -558,21 +550,6 @@ def postLike(request, slug):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-        post.save()
-        response = {
-            'message': 'done'
-        }
-        return JsonResponse(response)        
-
-
-def bookmark(request, slug):
-    """Add or remove user to/from the foreign key 'bookmark' of the post."""
-    if request.is_ajax and request.method == 'POST':
-        post = get_object_or_404(Post, slug=slug)
-        if post.bookmark.filter(id=request.user.id).exists():
-            post.bookmark.remove(request.user)
-        else:
-            post.bookmark.add(request.user)
         post.save()
         response = {
             'message': 'done'

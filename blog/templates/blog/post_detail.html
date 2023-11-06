@@ -35,21 +35,18 @@
                     <!-- 記事が投稿済みでログインしているユーザが書いた記事の場合 -->
                     {% if post.status == 1 %}
                     {% if user.is_authenticated %}
-                    <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
-                        {% csrf_token %}
-                        <!-- すでに「いいね」していたら、塗りつぶしたハート -->
-                        {% if liked %}
-                        <button type="submit" name="unlike" value="{{post.slug}}" class="btn">
-                            <i class="fa-solid fa-heart heart"></i>
-                        </button>
-                        <!-- 「いいね」していなかったらハートの輪郭だけ -->
-                        {% else %}
-                        <button type="submit" name="like" value="{{post.slug}}" class="btn">
-                            <i class="fa-regular fa-heart heart"></i>
-                        </button>
-                        {% endif %}
-                        <span class="text-secondary">{{ post.num_of_likes }}</span>
-                    </form>
+                    <!-- すでに「いいね」していたら、塗りつぶしたハート -->
+                    {% if liked %}
+                    <button type="button" name="unlike" value="{{post.num_of_likes}}" class="btn space-right like-btn">
+                        <i class="fa-solid fa-heart heart"></i>
+                    </button>
+                    <!-- 「いいね」していなかったらハートの輪郭だけ -->
+                    {% else %}
+                    <button type="button" name="like" value="{{post.num_of_likes}}" class="btn space-right like-btn">
+                        <i class="fa-regular fa-heart heart"></i>
+                    </button>
+                    {% endif %}
+                    <span class="text-secondary">{{ post.num_of_likes }}</span>
                     {% else %}
                     <!-- ログインしていない場合、「いいね」機能なしのハート -->
                     <span><i class="far fa-heart heart"></i></span>
@@ -57,20 +54,20 @@
                     {% endif %}
                     <!-- bookmark -->
                     {% if user.is_authenticated %}
-                    <form class=" d-inline" action="{% url 'bookmark' post.slug %}" method="POST">
-                        {% csrf_token %}
-                        <!-- すでにブックマークされていたら、塗りつぶしたアイコン -->
-                        {% if bookmarked %}
-                        <button type="submit" name="unbookmark" value="{{post.slug}}" class="btn">
-                            <i class="fa fa-bookmark" aria-hidden="true"></i>
-                        </button>
-                        {% else %}
-                        <!-- 「ブックマーク」していなかったら、輪郭のみのアイコン -->
-                        <button type="submit" name="bookmark" value="{{post.slug}}" class="btn">
-                            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                        </button>
-                        <span class="text-secondary bookmark-text">ブックマーク</span>
-                        {% endif %}
+                    <!-- <form class=" d-inline" action="{% url 'bookmark' post.slug %}" method="POST"> -->
+                    {% csrf_token %}
+                    <!-- すでにブックマークされていたら、塗りつぶしたアイコン -->
+                    {% if bookmarked %}
+                    <button type="submit" name="unbookmark" value="{{post.slug}}" class="btn">
+                        <i class="fa fa-bookmark" aria-hidden="true"></i>
+                    </button>
+                    {% else %}
+                    <!-- 「ブックマーク」していなかったら、輪郭のみのアイコン -->
+                    <button type="submit" name="bookmark" value="{{post.slug}}" class="btn">
+                        <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                    </button>
+                    <span class="text-secondary bookmark-text">ブックマーク</span>
+                    {% endif %}
                     </form>
                     {% endif %}
                     {% endif %}
