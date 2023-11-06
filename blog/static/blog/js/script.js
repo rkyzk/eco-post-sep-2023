@@ -145,10 +145,7 @@ $(document).on('submit', '#save-comment-form', function (e) {
             },
             error: function (response) {
                 commentParent.textContent = originalCmmt;
-                let alert = new bootstrap.Alert("エラー発生。もう一度お試しください。");
-                setTimeout(() => {
-                    alert.close();
-                }, 4000);
+                alert("エラー発生。もう一度お試しください。");
             },
             complete: function (response) {
                 // 更新・削除アイコン表示
@@ -160,12 +157,12 @@ $(document).on('submit', '#save-comment-form', function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // メッセージを５秒間表示
+    // メッセージを4秒間表示
     setTimeout(function () {
         let messages = document.getElementById("msg");
         let alert = new bootstrap.Alert(messages);
         alert.close();
-    }, 5000);
+    }, 4000);
 
     // マイページで「全て表示」ボタンでブログを表示
     let button = document.getElementsByClassName('show-posts');
@@ -218,6 +215,36 @@ document.addEventListener("DOMContentLoaded", function () {
                         // from the likes count.
                         likeBtn.innerHTML = '<i class="fa-regular fa-heart heart"></i>';
                         likeBtn.nextElementSibling.textContent = likesCount - 1;
+                    }
+                },
+                error: function (response) {
+                    alert("エラー発生。もう一度お試しください。");
+                }
+            })
+        });
+    }
+
+    // ブックマーク機能
+    let bmBtns = document.getElementsByClassName('bookmark');
+    for (bmBtn of bmBtns) {
+        bmBtn.addEventListener("click", function () {
+            let csrftoken = getCookie('csrftoken');
+            let url = 'bookmark/';
+            let bMark = bmBtn.lastElementChild.classList.contains('fa-bookmark-o');
+            console.log(bMark);
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    csrfmiddlewaretoken: csrftoken,
+                },
+                success: function (response) {
+                    // ブックマークがクリックされたらアイコンを塗りつぶす
+                    if (bMark) {
+                        bmBtn.innerHTML = '<i class="fa fa-bookmark" aria-hidden="true"></i>';
+                    } else {
+                        // ブックマークから削除されたら、輪郭だけのアイコンを表示
+                        bmBtn.innerHTML = '<i class="fa fa-bookmark-o" aria-hidden="true"></i>';
                     }
                 },
                 error: function (response) {

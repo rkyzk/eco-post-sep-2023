@@ -96,8 +96,8 @@ h1 {
 }
 
 .purple-leaf {
-    width: 85px;
-    height: 70px;
+    width: 70px;
+    height: 55px;
     margin-top: 10px;
     margin-left: -30px;
 }
@@ -139,16 +139,12 @@ a:hover,
 .bookmark {
     width: 20px;
     height: 20px;
-    margin-top: -3px;
+    margin-top: -7px;
 }
 
 .btn:focus,
 .btn:active {
     box-shadow: none;
-}
-
-.num-likes {
-    margin: 3px 0 0 3px;
 }
 
 /* post excerpt */
