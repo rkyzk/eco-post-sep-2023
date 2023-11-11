@@ -10,10 +10,13 @@ from datetime import datetime
 from cloudinary.models import CloudinaryField
 
 
+# 記事のステータス
 STATUS = ((0, "投稿前"), (1, "投稿済み"))
 
+# コメントのステータス
 COMMENT_STATUS = ((0, "オリジナル"), (1, "編集済み"), (2, "削除済み"))
 
+# カテゴリー
 CATEGORY = (('animals', '動物を守る'),
             ('aquatic systems', '海、川、湖を守る'),
             ('soil & trees', '土と木を守る'),
@@ -23,7 +26,7 @@ CATEGORY = (('animals', '動物を守る'),
 
 
 class Post(models.Model):
-    """Hold fields of Post model and functions around them."""
+    """記事のモデル"""
     title = models.CharField(max_length=80)
     slug = models.SlugField(max_length=80, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE,
@@ -59,60 +62,35 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Assign a slug if the post has no slug.
-        If the status is 'Published,' but the published date
-        is None, assign the current date and time.
+        スラッグがない場合、スラッグを付与
+        ステータスが「投稿済み」で投稿日が「None」の場合、
+        投稿日をその時に日時に設定
         """
         if not self.slug:
-            # add a random string after the title
+            # タイトルにランダムな文字列を追加
             random_str = ''.join(random.choices(string.ascii_letters +
                                  string.digits, k=16))
             self.slug = slugify(self.title + '-' + random_str)
-        # if the status is 2 ("Published") but published_on is None,
-        # assign the current date & time.
+        # 投稿日がない場合、設定
         if self.status == 1 and not self.published_on:
             self.published_on = datetime.utcnow()
-        # remove p tags in case the content contains them
+        # 記事にpタグがついていたら削除
         if self.content.startswith("<p>"):
             self.content = self.content[3:]
         if self.content.endswith("</p>"):
             self.content = self.content[:len(self.content)-4]
-        # store num of likes if the post id exists.
+        # 記事にIDが設定されていたら、「いいね」の数を設定
         if self.id is not None:
             self.num_of_likes = self.likes.count()
         super().save(*args, **kwargs)
 
     def __str__(self):
         """
-        Return the title.
+        タイトルを返す
         :return: title
         :rtype: str
         """
         return self.title
-
-    def status_value(self):
-        """
-        Return presentable values for status.
-        :return: status descrption
-        :rtype: str
-        """
-        if self.status == 0:
-            return "未投稿"
-        # if submited or published, return the status as it is.
-        else:
-            return "投稿中"
-
-    def pub_date(self):
-        """
-        Return the published date.
-        If the post hasn't been published, return 'Not published.'
-        :returns: published_on or 'Not published'
-        :rtype: str
-        """
-        if self.status == 1:
-            return str(self.published_on)[:-5]
-        else:
-            return '未投稿'
 
     def excerpt(self):
         """

@@ -55,22 +55,6 @@ class TestPostModel(TestCase):
         self.assertEqual(self.post1.num_of_likes,
                          self.post1.likes.count())
 
-    def test_status_value_returns_saved_as_draft_if_status_0(self):
-        self.assertEqual(self.post1.status_value(), 'Saved as draft')
-
-    def test_status_value_returns_published_if_status_1(self):
-        self.post1.status = 1
-        self.assertEqual(self.post1.status_value(), 'Published')
-
-    def test_pub_date_returns_string_message_if_not_published(self):
-        self.assertEqual(self.post1.pub_date(), 'Not published')
-
-    def test_pub_date_returns_specified_format_if_published(self):
-        date = datetime.utcnow()
-        self.post1.status = 1
-        self.post1.published_on = date
-        self.assertEqual(self.post1.pub_date(), date.strftime("%b %d, %Y"))
-
     def test_excerpt_returns_specified_str(self):
         content = "I'm writing a long content to test " + \
             "if the excerpt method returns the first 199 characters and " + \

@@ -15,8 +15,8 @@
                             <li>投稿日: {{ post.published_on|date:"Y-m-d" }}</li>
                             {% else %}
                             <!-- 投稿されていなかったら、記事の作成日を記載 -->
-                            <li><em>{{ post.status_value }}</em></li>
-                            <li><em>{{ post.created_on|date:"Y-m-d" }}</em></li>
+                            <li><em>未投稿</em></li>
+                            <li><em>作成日：{{ post.created_on|date:"Y-m-d" }}</em></li>
                             {% endif %}
                             <li><em>{{ post.city }}</em></li>
                         </ul>
