@@ -35,7 +35,7 @@ const hideForm = (event) => {
 }
 
 // コメント更新の際、元のコメントを取得してフォームに表示
-showCommentEditForm = (event) => {
+const showCommentEditForm = (event) => {
     // 他のコメントフォームが開いていたら閉じる
     let shownForm = document.getElementById('save-comment-form');
     if (shownForm) {
@@ -58,33 +58,31 @@ showCommentEditForm = (event) => {
             content = response['content'];
             // フォームを作成
             let commentBox = '<span id="comment-validation" class="hide" style="color: red;">' +
-                'コメントを入力してください</span>' +
+                'Please enter this field.</span>' +
                 '<form class="d-flex" id="save-comment-form" data-id=' +
                 id + ' method="POST"><textarea type="text"' +
                 ' class="update-form" id="comment">' +
                 content + '</textarea><div>' +
                 '<button class="blue-btn" type="submit" value="' + content +
-                '" id="save-cmmt-btn">保存</button>' +
+                '" id="save-cmmt-btn">save</button>' +
                 '<button class="blue-btn mt-1" onClick="hideForm(this)">' +
-                'キャンセル</button></div></form>';
+                'cancel</button></div></form>';
             comment.innerHTML = commentBox;
             $('#comment').focus();
         },
         error: function (response) {
-            // 元のコメントを表示
+            alert("エラー発生。もう一度お試しください。")
+            // アイコンを押す前に表示されていたコメントを表示
             comment.textContent = content;
-            let alert = new bootstrap.Alert("エラー発生。もう一度お試しください。");
-            setTimeout(() => {
-                alert.close();
-            }, 4000);
         },
         complete: function (response) {
             // 更新・削除のアイコンを再表示
-            icons.classList.remove("d-flex");
-            icons.classList.add("d-none");
+            icons.classList.remove("d-none");
+            icons.classList.add("d-flex");
         }
     })
 }
+
 
 // クッキー取得
 // https://docs.djangoproject.com/en/dev/ref/csrf/#ajaxより引用

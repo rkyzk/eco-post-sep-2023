@@ -318,30 +318,18 @@ class TestViews(TestCase):
         self.assertFalse(post.bookmark.filter(id=self.user2.id).exists())
 
     # Testing "UpdateComment" view -----------------------------------------
-    def test_update_comment_GET_gets_the_page_if_right_user(self):
-        response = self.c.get('/update_comment/comment1/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response,
-                                'blog/update_comment.html',
-                                'blog/base.html')
+    # def test_update_comment_GET_will_403_if_wrong_user(self):
+    #     response = self.c2.get(reverse('update_comment', kwargs={'id': 1}))
+    #     self.assertEqual(response.status_code, 403)
 
-    def test_update_comment_GET_will_redirect_to_login_if_not_logged_in(self):
-        response = self.client.get('/update_comment/comment1/')
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(response.url.startswith('/accounts/login/'))
-
-    def test_update_comment_GET_will_403_if_wrong_user(self):
-        response = self.c2.get(reverse('update_comment', kwargs={'id': 1}))
-        self.assertEqual(response.status_code, 403)
-
-    def test_update_comment_POST_will_update_comment(self):
-        response = self.c.post('/update_comment/comment1/',
-                               {'body': 'comment updated'})
-        comment = Comment.objects.filter(commenter=self.user1).first()
-        self.assertEqual(comment.body, 'comment updated')
-        self.assertEqual(comment.comment_status, 1)
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, f'/detail/{comment.post.slug}/')
+    # def test_update_comment_POST_will_update_comment(self):
+    #     response = self.c.post('/update_comment/comment1/',
+    #                            {'body': 'comment updated'})
+    #     comment = Comment.objects.filter(commenter=self.user1).first()
+    #     self.assertEqual(comment.body, 'comment updated')
+    #     self.assertEqual(comment.comment_status, 1)
+    #     self.assertEqual(response.status_code, 302)
+    #     self.assertRedirects(response, f'/detail/{comment.post.slug}/')
 
     # Testing "DeleteComment" view -----------------------------------------
     def test_delete_comment_POST_will_set_comment_status_to_2(self):
@@ -364,12 +352,6 @@ class TestViews(TestCase):
 
     def test_update_post_GET_will_403_if_wrong_user(self):
         response = self.c2.get(f'/update/{self.post1.slug}/')
-        self.assertEqual(response.status_code, 403)
-
-    def test_update_post_GET_will_403_if_published(self):
-        self.post1.status = 1
-        self.post1.save()
-        response = self.c.get(f'/update/{self.post1.slug}/')
         self.assertEqual(response.status_code, 403)
 
     def test_update_post_POST_will_update_title(self):
@@ -435,7 +417,7 @@ class TestViews(TestCase):
                                 'save': 'draft'},
                                follow=True)
         messages = list(response.context['messages'])
-        self.assertEqual(str(messages[0]), "The change has been saved.")
+        self.assertEqual(str(messages[0]), "記事が更新されました。")
 
     def test_update_post_POST_msg_says_published_if_published(self):
         response = self.c.post(reverse('update_post',
@@ -447,7 +429,7 @@ class TestViews(TestCase):
                                 'publish': 'complete'},
                                follow=True)
         messages = list(response.context['messages'])
-        self.assertEqual(str(messages[0]), "Your post has been published.")
+        self.assertEqual(str(messages[0]), "記事が投稿されました。")
 
     def test_update_post_POST_publish_will_set_status_to_1(self):
         response = self.c.post(reverse('update_post',

@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 from .filters import PostFilter
 from .forms import PostForm, CommentForm
 from .models import Post, Comment, CATEGORY
+from django.http import JsonResponse
 from django.core.paginator import Paginator
 
 
@@ -49,10 +50,10 @@ class AddPost(LoginRequiredMixin, generic.CreateView):
         arguments: self, form: Post form
         :rtype: method
         """
-        # set the logged in user as the author
+        # ユーザーを投稿者に設定
         form.instance.author = self.request.user
         message = '記事を下書きとして保存しました。'
-        # If published, set the status to 1 ('Published.')
+        # 投稿ボタンがクリックされたならばステータスを１（投稿済み）に設定
         if 'publish' in self.request.POST.keys():
             form.instance.status = 1
             message = "記事が投稿されました。"
@@ -95,9 +96,8 @@ class PostDetail(View):
 
     def post(self, request, slug, *args, **kwargs):
         """
-        入力されたコメントをバリデート後
-        コメントを保存、表示。
-        エラーの際はからのコメントフォームとエラーメッセージを表示。
+        入力されたコメントをバリデート後、コメントを保存して表示。
+        エラーの際は空のコメントフォームとエラーメッセージを表示。
         arguments: self, request, slug, *args, **kwargs
         :rtype: method
         """
@@ -109,17 +109,19 @@ class PostDetail(View):
         bookmarked = False
         if post.bookmark.filter(id=self.request.user.id).exists():
             bookmarked = True
-        # get input data from the user and store it in 'comment_form'
+        # 入力内容をコメントフォームに設定
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
+            # 投稿者をユーザーに設定
             comment_form.instance.commenter = request.user
             comment = comment_form.save(commit=False)
-            # specify which post this comment belongs to.
+            # コメントがどの記事に属するのか設定
             comment.post = post
             comment.save()
             messages.add_message(request, messages.SUCCESS,
                                  'コメントが投稿されました。')
         else:
+            # エラーの場合、空コメントフォームとメッセージを表示
             comment_form = CommentForm()
             messages.add_message(request, messages.INFO, "エラー発生。" +
                                  "コメントは保存されませんでした。")
@@ -167,14 +169,14 @@ def bookmark(request, slug):
 
 
 class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
-    """ポストを更新"""
+    """記事を更新"""
     model = Post
     template_name = "blog/update_post.html"
     form_class = PostForm
 
     def form_valid(self, form):
         """
-        validate the form. If validated, save it.
+        入力内容をバリデート、
         arguments: self, form
         :return: super()
         :rtype: method
@@ -184,9 +186,8 @@ class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
         # 投稿ボタンが押されたら、ポストのステータスを「1」に変更 
         if 'publish' in self.request.POST.keys():
             form.instance.status = 1
-            message = "記事を投稿しました。"
+            message = "記事が投稿されました。"
         form.save()
-        print(form.instance.category)
         messages.add_message(self.request, messages.SUCCESS, message)
         return super(UpdatePost, self).form_valid(form)
 
@@ -227,11 +228,12 @@ def getComment(request, slug):
     if request.is_ajax and request.method == 'GET':
         id = request.GET['id']
         comment = get_object_or_404(Comment, id=id)
+        # ユーザーチェック
         response = {
             'content': comment.body
         }
         return JsonResponse(response)
-
+        
 
 def updateComment(request, slug):
     """更新されたコメントをDBに保存"""
