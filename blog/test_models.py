@@ -56,16 +56,16 @@ class TestPostModel(TestCase):
                          self.post1.likes.count())
 
     def test_excerpt_returns_specified_str(self):
-        content = "I'm writing a long content to test " + \
-            "if the excerpt method returns the first 199 characters and " + \
-            "... are returned. test test test test test sentences." + \
-            "test sentences, test sentences, test sentences "
+        content = "1234567890123456789012345678901234567890" + \
+            "1234567890123456789012345678901234567890" + \
+            "1234567890123456789012345678901234567890" + \
+            "1234567890123456789012345678901234567890"
         post3 = Post.objects.create(
             title="title3",
             author=self.user1,
             content=content
         )
-        self.assertEqual(post3.excerpt(), str(content)[0:199] + "...")
+        self.assertEqual(post3.excerpt(), str(content)[0:149] + "...")
 
     def test_get_absolute_url(self):
         self.assertEqual(self.post1.get_absolute_url(),

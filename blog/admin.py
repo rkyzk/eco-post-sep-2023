@@ -1,4 +1,4 @@
-"""This module holds classes to customize the admin panel."""
+"""アドミンパネルをカスタマイズする"""
 
 from django.contrib import admin
 from django.db import models
@@ -10,8 +10,7 @@ from datetime import datetime
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
     """
-    Customize the list, search and filter items of Post model
-    on the admin panel.
+    アドミンパネルのリスト、フィルター項目をカスタマイズ
     """
     list_display = ('title', 'slug', 'status', 'created_on')
     search_fields = ('title', 'content')
@@ -20,19 +19,17 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content',)
     actions = ['publish_posts']
 
-    def publish_posts(self, request, queryset):
+    def feature_posts(self, request, queryset):
         """
-        Set the status to 'Published'
-        and store the published date and time.
-        arguments: self, request, queryset: posts to be published
+        記事をおすすめ記事に設定する
+        arguments: self, request, queryset: おすすめ記事に設定する記事
         """
-        queryset.update(status=1)
-        queryset.update(published_on=datetime.utcnow())
+        queryset.update(featured_flag=True)
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    """Customizes the appearance of Comment model on the admin panel."""
+    """コメントモデルのリスト、フィルター項目などをカスタマイズ"""
     list_display = ('commenter', 'body', 'post',
                     'created_on', 'comment_status')
     list_filter = ('created_on', 'comment_status')

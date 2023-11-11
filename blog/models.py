@@ -1,4 +1,4 @@
-"""This module holds models used in ecopost."""
+"""本アプリで使用される記事とコメントモデル"""
 
 import random
 import string
@@ -94,7 +94,7 @@ class Post(models.Model):
 
     def excerpt(self):
         """
-        Return the first 200 letters of the post.
+        記事の最初の150文字を返す
         :returns: excerpt
         :rtype: str
         """
@@ -103,14 +103,14 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         """
-        Return the URL of 'Detail Page.'
+        post_detailページのURLを返す
         :return: reverse
         """
         return reverse('detail_page', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
-    """Hold fields of Comment model and the functions around them."""
+    """コメントモデル"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE,
                              related_name='comments')
     commenter = models.ForeignKey(User, on_delete=models.CASCADE,
@@ -124,7 +124,7 @@ class Comment(models.Model):
 
     def __str__(self):
         """
-        Return the comment body and the commenter.
+        コメント内容と投稿者の名前を返す
         :return: comment & the commenter
         :rtype: str
         """
