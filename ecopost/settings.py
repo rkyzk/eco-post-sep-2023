@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from django.contrib.messages import constants as messages
-# import django_heroku
+import django_heroku
 
 
 if os.path.isfile('env.py'):
@@ -154,7 +154,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 

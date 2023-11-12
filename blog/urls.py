@@ -1,4 +1,4 @@
-"""This module holds url paths used in blog app."""
+"""blog appのURLパスを指定するモジュール"""
 
 from . import views
 from django.urls import path

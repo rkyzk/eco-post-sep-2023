@@ -2,10 +2,9 @@
 {% load widget_tweaks %}
 {% block content %}
 <div class="container d-flex justify-content-center">
-    <div class="mt-4">
-        <h1>記事を検索</h1>
-        <!-- 検索フォーム -->
-        <form method="get">
+    <!-- 検索フォーム -->
+    <form method="get">
+        <h2 class="mt-4">記事を検索</h1>
             <div class="mt-2 form-lable-group">
                 {{postForm.form.title.label_tag}}
                 {% render_field postForm.form.title class="form-control" %}
@@ -51,14 +50,17 @@
             </div>
             <button class="blue-btn mt-3" type="submit" name="search">検索</button>
             <button class="blue-btn mt-3 btn-right" type="submit">フォームをクリア</button>
-        </form>
-        <!-- 検索結果 -->
+    </form>
+</div>
+<!-- 検索結果 -->
+<div class="container d-flex justify-content-center">
+    <div class="content">
         {% if search %}
         {% if no_input %}
         <p class="warning mt-3">検索ワードを入力してください。</p>
         {% else %}
         <div class="row posts">
-            <h2>検索結果</h2>
+            <h2>検索結果<span class="item-right">{{posts|length}}件</span></h2>
             {% for post in posts %}
             <!-- １行に３記事表示 -->
             {% include "blog/post_excerpt.html" %}

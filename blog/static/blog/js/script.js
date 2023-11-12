@@ -58,7 +58,7 @@ const showCommentEditForm = (event) => {
             content = response['content'];
             // フォームを作成
             let commentBox = '<span id="comment-validation" class="hide" style="color: red;">' +
-                'Please enter this field.</span>' +
+                'コメントを入力してください.</span>' +
                 '<form class="d-flex" id="save-comment-form" data-id=' +
                 id + ' method="POST"><textarea type="text"' +
                 ' class="update-form" id="comment">' +

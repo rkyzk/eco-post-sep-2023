@@ -402,7 +402,7 @@ class PopularPosts(generic.ListView):
 
     def get_context_data(self, **kwargs):
         """
-        set page title as context
+        コンテキストにページタイトルを設定
         :return: context
         :rtype: object
         """
