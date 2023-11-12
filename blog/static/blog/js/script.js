@@ -240,9 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     // ブックマークがクリックされたらアイコンを塗りつぶす
                     if (bMark) {
                         bmBtn.innerHTML = '<i class="fa fa-bookmark" aria-hidden="true"></i>';
+                        bmBtn.setAttribute('title', "ブックマークより削除");
                     } else {
                         // ブックマークから削除されたら、輪郭だけのアイコンを表示
                         bmBtn.innerHTML = '<i class="fa fa-bookmark-o" aria-hidden="true"></i>';
+                        bmBtn.setAttribute('title', "ブックマークに追加");
                     }
                 },
                 error: function (response) {

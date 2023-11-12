@@ -48,7 +48,7 @@
             <nav id="nav-menu">
                 <div class="pop-up-menu">
                     <ul class="nav-list">
-                        <li><a class="list_item" href="{% url 'home' %}">ホーム</a></li>
+                        <li><a class="list-item" href="{% url 'home' %}">ホーム</a></li>
                         <li><a class="list-item" href="{% url 'search' %}">検索</a></li>
                         {% if user.is_authenticated %}
                         <li><a class="list-item" href="{% url 'add_story' %}">記事を投稿</a></li>

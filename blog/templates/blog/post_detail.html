@@ -12,13 +12,13 @@
                         <ul>
                             <!-- 記事が投稿されていたら投稿日を記載 -->
                             {% if post.status == 1 %}
-                            <li>投稿日: {{ post.published_on|date:"Y-m-d" }}</li>
+                            <li>投稿日: {{post.published_on|date:"Y-m-d"}}</li>
                             {% else %}
                             <!-- 投稿されていなかったら、記事の作成日を記載 -->
                             <li><em>未投稿</em></li>
-                            <li><em>作成日：{{ post.created_on|date:"Y-m-d" }}</em></li>
+                            <li><em>作成日：{{post.created_on|date:"Y-m-d"}}</em></li>
                             {% endif %}
-                            <li><em>{{ post.city }}</em></li>
+                            <li><em>{{post.city}}</em></li>
                         </ul>
                     </div>
                 </div>
@@ -49,7 +49,8 @@
                     <span class="text-secondary likes-count">{{ post.num_of_likes }}</span>
                     {% else %}
                     <!-- ログインしていない場合、「いいね」機能なしのハート -->
-                    <span><i class=" far fa-heart heart"></i></span>
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="「いいね」はログイン後可能">
+                        <i class=" far fa-heart heart"></i></span>
                     <span class="text-secondary likes-count">{{ post.num_of_likes }}</span>
                     {% endif %}
                     <!-- bookmark -->
@@ -57,7 +58,7 @@
                     <!-- すでにブックマークされていたら、塗りつぶしたアイコン -->
                     {% if bookmarked %}
                     <button type="button" name="unbookmark" class="btn bookmark" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" title="ブックマークから削除">
+                        data-bs-placement="bottom" title="ブックマークより削除">
                         <i class="fa fa-bookmark" aria-hidden="true"></i>
                     </button>
                     {% else %}
