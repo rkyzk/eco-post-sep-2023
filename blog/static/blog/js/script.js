@@ -64,9 +64,9 @@ const showCommentEditForm = (event) => {
                 ' class="update-form" id="comment">' +
                 content + '</textarea><div>' +
                 '<button class="blue-btn" type="submit" value="' + content +
-                '" id="save-cmmt-btn">save</button>' +
+                '" id="save-cmmt-btn">保存</button>' +
                 '<button class="blue-btn mt-1" onClick="hideForm(this)">' +
-                'cancel</button></div></form>';
+                'キャンセル</button></div></form>';
             comment.innerHTML = commentBox;
             $('#comment').focus();
         },
