@@ -2,7 +2,7 @@
 h2 {
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 300;
     color: rgb(141, 111, 56);
 }
 
@@ -329,7 +329,6 @@ footer {
 }
 
 /* ----------- update_post.html -------------------*/
-
 .update-post-btn {
     margin-right: 5px;
 }
