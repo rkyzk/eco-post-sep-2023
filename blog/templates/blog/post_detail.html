@@ -49,7 +49,7 @@
                     <span class="text-secondary likes-count">{{ post.num_of_likes }}</span>
                     {% else %}
                     <!-- ログインしていない場合、「いいね」機能なしのハート -->
-                    <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="「いいね」はログイン後可能">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="「いいね」をするにはログインしてください">
                         <i class=" far fa-heart heart"></i></span>
                     <span class="text-secondary likes-count">{{ post.num_of_likes }}</span>
                     {% endif %}
@@ -74,8 +74,8 @@
                 <!--　likes & bookmark -->
             </div> <!-- img-box -->
         </section>
-        <section class="post-content mt-3">
-            <div>{{ post.content | safe }}</div>
+        <section class="mt-3">
+            <div class="post-content">{{ post.content | safe }}</div>
             <!-- ログインしているユーザが書いた記事の場合、更新と削除ボタンを表示 -->
             {% if post.author == user %}
             <div class="mt-3 d-flex justify-content-start">

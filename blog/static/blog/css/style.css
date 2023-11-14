@@ -305,6 +305,10 @@ footer {
     aspect-ratio: 3 / 2;
 }
 
+.post-content {
+    white-space: pre-line;
+}
+
 .likes-count {
     margin-left: 4px;
 }
