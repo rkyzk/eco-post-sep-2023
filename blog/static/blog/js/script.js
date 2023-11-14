@@ -204,13 +204,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     csrfmiddlewaretoken: csrftoken,
                 },
                 success: function (response) {
-                    // if like button is clicked, fill in the heart and add 1 to the count
+                    // いいねがクリックされたらハートを塗りつぶして数に１追加
                     if (like) {
                         likeBtn.innerHTML = '<i class="fa-solid fa-heart heart"></i>';
                         likeBtn.nextElementSibling.textContent = likesCount + 1;
                     } else {
-                        // if unlike is clicked, show only the heart outline and subtract 1
-                        // from the likes count.
+                        // いいね解除。ハートを輪郭だけにして、数を１減らす。
                         likeBtn.innerHTML = '<i class="fa-regular fa-heart heart"></i>';
                         likeBtn.nextElementSibling.textContent = likesCount - 1;
                     }

@@ -1,18 +1,18 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<div class="container d-flex justify-content-center">
-    <div class="my-page">
-        <h1 class="mt-5">マイページ</h1>
+<div class="d-flex justify-content-center">
+    <div class="content">
+        <h2 class=" page-heading mt-5"><i class="fa-brands fa-pagelines big-space-right"></i>マイページ</h2>
         <!-- ユーザーが書いた記事 -->
-        <h2 class="mt-5 mb-3"><i class="fa-brands fa-pagelines big-space-right"></i>私が書いた記事</h2>
+        <h2 class="my-page-headings mt-5 mb-3"><i class="fa-solid fa-seedling big-space-right"></i>私が書いた記事</h2>
         {% include "blog/my_page_template.html" with posts=my_posts only %}
         <hr class="d-none d-lg-block mt-5">
         <!-- コメントした記事 -->
-        <h2 class="mt-5 mb-3"><i class="fa-brands fa-pagelines big-space-right"></i>コメントした記事</h2>
+        <h2 class="my-page-headings mt-5 mb-3"><i class="fa-solid fa-seedling big-space-right"></i>コメントした記事</h2>
         {% include "blog/my_page_template.html" with posts=commented_posts only %}
         <hr class="d-none d-lg-block mt-5">
         <!-- ブックマークした記事 -->
-        <h2 class="mt-5 mb-3"><i class="fa-brands fa-pagelines big-space-right"></i>ブックマークした記事</h2>
+        <h2 class="my-page-headings mt-5 mb-3"><i class="fa-solid fa-seedling big-space-right"></i>ブックマークした記事</h2>
         {% include "blog/my_page_template.html" with posts=bookmarked_posts only %}
         <hr class="d-none d-lg-block mt-5">
     </div>

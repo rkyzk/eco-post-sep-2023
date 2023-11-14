@@ -94,7 +94,7 @@
         {% if post.status == 1 %}
         <section class="d-lg-flex justify-content-between mt-5 comments">
             <div class="comments-left">
-                <h2>コメント</h2>
+                <h2><i class="fa-regular fa-comment-dots big-space-right"></i>コメント</h2>
                 {% for comment in comments %}
                 <div>
                     {% if comment.comment_status != 2 %}
@@ -140,7 +140,7 @@
             <div class="mt-custom comments-right">
                 <!-- ログインしているユーザーにはコメントフォームを表示 -->
                 {% if user.is_authenticated %}
-                <h2>コメントを投稿:</h2>
+                <h2><i class="fa-solid fa-pen big-space-right"></i>コメントを投稿:</h2>
                 <p class="mt-3">{{ user.username }}として投稿</p>
                 <form method="post" class="mt-3">
                     {{ comment_form | crispy }}

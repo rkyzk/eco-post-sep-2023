@@ -4,8 +4,8 @@
 <div class="container d-flex justify-content-center">
     <!-- 検索フォーム -->
     <form method="get">
-        <h2 class="mt-4">記事を検索</h1>
-            <div class="mt-2 form-lable-group">
+        <h2 class="mt-4"><i class="fa-solid fa-magnifying-glass big-space-right"></i>記事を検索</h1>
+            <div class=" mt-2 form-lable-group">
                 {{postForm.form.title.label_tag}}
                 {% render_field postForm.form.title class="form-control" %}
             </div>
@@ -32,7 +32,7 @@
                     {{postForm.form.published_after.label_tag}}
                     {% render_field postForm.form.published_after class="form-control" %}
                 </div>
-                <div class="col-md-1 col-1 pub-range">〜</div>
+                <div class="col-md-1 col-1 pub-range tilda">〜</div>
                 <div class=" col-md-5 col-11 form-lable-group pub-date-range pub-before">
                     {{postForm.form.published_before.label_tag}}
                     {% render_field postForm.form.published_before class="form-control" %}

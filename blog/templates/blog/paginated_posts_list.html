@@ -2,7 +2,7 @@
 {% block content %}
 <div class="d-flex justify-content-center">
     <div class="content">
-        <h1 class="mt-5">{{page_title}}</h1>
+        <h2 class="page-heading mt-5"><i class="fa-brands fa-pagelines big-space-right"></i>{{page_title}}</h2>
         <div class="row posts">
             {% for post in object_list %}
             {% include "blog/post_excerpt.html" %}
