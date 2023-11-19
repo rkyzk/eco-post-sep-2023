@@ -57,7 +57,7 @@
     <div class="content">
         {% if search %}
         {% if no_input %}
-        <p class="warning mt-3">検索ワードを入力してください。</p>
+        <p class="mt-3" style="color: red; text-align: center;">検索ワードを入力してください。</p>
         {% else %}
         <div class="row posts">
             <h2>検索結果<span class="item-right">{{posts|length}}件</span></h2>
