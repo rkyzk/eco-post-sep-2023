@@ -227,7 +227,7 @@ def getComment(request, slug):
     """コメント更新フォームに表示するためコメントを取得"""
     if request.is_ajax and request.method == 'GET':
         id = request.GET['id']
-        comment = get_object_or_404(Comment, id=id)
+        comment = get_object_or_404(Comment, id=200)
         # ユーザーチェック
         response = {
             'content': comment.body
@@ -250,7 +250,6 @@ def updateComment(request, slug):
         return JsonResponse(response)
 
 class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, View):
-
     def post(self, request, id, *args, **kwargs):
         """
         コメントステータスを「2, Deleted」に変更
@@ -276,7 +275,6 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, View):
 
 
 class MyPage(LoginRequiredMixin, UserPassesTestMixin, View):
-
     def get(self, request, pk, *args, **kwargs):
         """
         1) 自分で書いた記事
