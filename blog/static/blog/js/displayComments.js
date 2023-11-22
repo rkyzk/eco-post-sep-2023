@@ -63,9 +63,9 @@ const showCommentEditForm = (event) => {
             }, 3000);
         },
         complete: function (response) {
-            // 更新・削除のアイコンを再表示
-            icons.classList.remove("d-none");
-            icons.classList.add("d-flex");
+            // 更新・削除のアイコンを非表示
+            icons.classList.remove("d-flex");
+            icons.classList.add("d-none");
         }
     })
 }

@@ -227,7 +227,7 @@ def getComment(request, slug):
     """コメント更新フォームに表示するためコメントを取得"""
     if request.is_ajax and request.method == 'GET':
         id = request.GET['id']
-        comment = get_object_or_404(Comment, id=200)
+        comment = get_object_or_404(Comment, id=id)
         # ユーザーチェック
         response = {
             'content': comment.body
