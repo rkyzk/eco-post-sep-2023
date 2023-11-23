@@ -34,6 +34,14 @@ h4 {
     background-color: #f2f2f2;
 }
 
+.pop-up-menu {
+    margin-top: -20px;
+}
+
+.heading {
+    margin-top: 20px;
+}
+
 .nav-list {
     display: grid;
     grid-auto-flow: column;
@@ -105,7 +113,7 @@ h1 {
     width: 50px;
     height: 40px;
     rotate: 60deg;
-    margin: -5px 0 0 10px;
+    margin: -12px 0 0 10px;
 }
 
 a,
@@ -369,7 +377,7 @@ footer {
     width: 350px;
 }
 
-@media screen and (min-width: 1161px) {
+@media screen and (min-width: 995px) {
     #nav-menu {
         display: block !important;
         width: 470px;
@@ -378,20 +386,13 @@ footer {
     }
 }
 
-@media screen and (max-width: 1300px) {
-    .heading {
-        left: 30%;
-    }
-}
-
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 994px) {
     .hamburger {
         display: block;
         width: 20px;
         height: 20px;
-        margin-top: 20px;
         position: absolute;
-        top: 53px;
+        top: 28px;
         right: 10px;
     }
 
@@ -400,30 +401,27 @@ footer {
         padding: 0 15px;
     }
 
-    .heading {
-        left: 40%;
-    }
-
     .nav-menu {
         position: relative;
     }
 
     .pop-up-menu {
-        background-color: #f8f8f8;
+        background-color: #e5e5e5;
         opacity: 0.9;
         position: absolute;
-        top: 100px;
+        top: 85px;
         right: 15px;
         z-index: 2;
-        padding: 5px 8px;
+        padding: 10px 15px 0 0;
     }
 
     .nav-list {
         grid-auto-flow: row;
         list-style-type: none;
-        row-gap: 10px;
+        row-gap: 5px;
         column-gap: 0;
         justify-items: start;
+        margin-left: -10px;
     }
 
     #nav-menu {
@@ -452,53 +450,12 @@ footer {
     .intro-box {
         width: 85%;
     }
-
-    .leaf-1 {
-        width: 90px;
-        height: 30px;
-        margin-top: 20px;
-        margin-left: 10px;
-    }
-
-    .leaf-2 {
-        width: 90px;
-        height: 30px;
-        margin-top: 90px;
-        margin-left: -40px;
-    }
-
-    .purple-leaf {
-        width: 65px;
-        height: 50px;
-        margin-top: 10px;
-        margin-left: -30px;
-    }
-
-    .earth {
-        width: 80px;
-        height: 80px;
-    }
 }
 
 @media (max-width: 767px) {
     .post-title {
         height: auto;
     }
-}
-
-@media (max-width: 705px) {
-    .left-leaves {
-        display: none !important;
-    }
-
-    .heading {
-        margin-left: 30px;
-        position: static;
-        justify-content: start;
-    }
-}
-
-@media (max-width: 767px) {
 
     .individual-post,
     .img-box {
@@ -544,6 +501,16 @@ footer {
     }
 }
 
+@media screen and (max-width: 620px) {
+
+    .leaf-1,
+    .leaf-2,
+    .leaf-5 {
+        display: none;
+    }
+
+}
+
 @media screen and (max-width: 575px) {
     .intro-box {
         width: 95%;
@@ -568,17 +535,6 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
-    .header {
-        padding: 0 0 0 15px;
-    }
-
-    .hamburger {
-        top: 35px;
-    }
-
-    .pop-up-menu {
-        top: 40px;
-    }
 
     /* ------- Update Post ------------------------*/
     .update-post-btn-box {
@@ -598,20 +554,9 @@ footer {
     }
 }
 
+
+
 @media screen and (max-width: 420px) {
-    .hamburger {
-        top: 10px;
-    }
-
-    .pop-up-menu {
-        top: 60px;
-        right: 8px;
-    }
-
-    .heading {
-        margin-top: 60px;
-    }
-
     .featured-heading {
         margin-left: 10px;
     }
@@ -625,5 +570,24 @@ footer {
 
     .link-to-favorites {
         margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .header {
+        height: 100px;
+    }
+
+    .hamburger {
+        top: 70px;
+    }
+
+    .pop-up-menu {
+        top: 120px;
+        right: 8px;
+    }
+
+    .heading {
+        margin-top: 20px;
     }
 }
