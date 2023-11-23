@@ -26,7 +26,7 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script defer src="https://kit.fontawesome.com/b78a20097c.js" crossorigin="anonymous"></script>
-    <script defer src="{% static 'blog/js/script.js' %}"></script>
+    <script defer src="{% static 'blog/js/burgerMenu.js' %}"></script>
     <script defer src="{% static 'blog/js/messages.js' %}"></script>
     <script defer src="{% static 'blog/js/displayComments.js' %}"></script>
     <script defer src="{% static 'blog/js/updateComments.js' %}"></script>
@@ -37,19 +37,19 @@
 
 <body>
     <header class="header">
-        <div class="mobile-header d-flex align-items-center">
-            <div class="d-flex align-items-center left-leaves ml-3">
+        <div class="mobile-header d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center heading ml-3">
                 <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-2.png" class="leaf-1"
                     alt="leaf">
                 <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-4.png" class="leaf-2"
                     alt="leaf">
+                <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-3.png" class="leaf-3"
+                    alt="leaf">
+                <h1 style="white-space: nowrap;">eco post</h1>
                 <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/purple-leaf.png"
                     class="purple-leaf" alt="leaf">
-            </div>
-            <div class="heading d-flex align-items-center">
-                <h1 style="white-space: nowrap;">eco post</h1>
-                <img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891794/blue-earth_dvkptz.png"
-                    class="earth" alt="blue and green earth">
+                <img src="https://res.cloudinary.com/ds66fig3o/image/upload/v1694952374/leaf-5.png" class="leaf-5"
+                    alt="leaf">
             </div>
             <button class="hamburger" id="hamburger" onclick="openMenu()">|||</button>
             <nav id="nav-menu">

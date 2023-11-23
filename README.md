@@ -36,3 +36,7 @@ HTML/CSS, JavaScript, Python, Django, Bootstrap, jQuery, AJAX
 ## 本プロジェクト作成にあたり参考にした資料
 「Code Star」
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
+
+
+<img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891794/blue-earth_dvkptz.png"
+                    class="earth" alt="blue and green earth">

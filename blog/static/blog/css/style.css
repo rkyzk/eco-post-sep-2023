@@ -29,9 +29,8 @@ h4 {
 
 /* header */
 .header {
-    height: 150px;
+    height: 90px;
     width: 100%;
-    height: 180px;
     background-color: #f2f2f2;
 }
 
@@ -39,7 +38,6 @@ h4 {
     display: grid;
     grid-auto-flow: column;
     list-style-type: none;
-    column-gap: 15px;
     padding: 0 0 0 25px;
 }
 
@@ -50,6 +48,7 @@ h4 {
 
 .nav-list a {
     color: rgb(100, 80, 44);
+    font-size: 1rem;
 }
 
 .nav-list a:hover {
@@ -72,60 +71,41 @@ h4 {
     justify-content: space-between;
 }
 
-.heading {
-    margin-top: 40px;
-    width: 340px;
-    position: absolute;
-    left: 38%;
-}
-
 h1 {
     font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 3rem;
+    font-size: 2rem;
     color: rgb(141, 111, 56);
 }
 
-.earth {
-    width: 100px;
-    height: 100px;
-    margin-left: 20px;
-}
-
-.left-leaves {
-    width: 280px;
-}
-
 .leaf-1 {
-    width: 110px;
-    height: 40px;
-    margin-top: 20px;
+    width: 70px;
+    height: 30px;
     margin-left: 10px;
 }
 
 .leaf-2 {
-    width: 110px;
-    height: 40px;
-    margin-top: 90px;
-    margin-left: -40px;
-}
-
-.purple-leaf {
     width: 70px;
-    height: 55px;
-    margin-top: 10px;
-    margin-left: -30px;
+    height: 30px;
+    rotate: 20deg;
 }
 
 .leaf-3 {
-    width: 85px;
-    height: 90px;
-    margin-top: 30px;
-    margin-right: 15px;
+    width: 40px;
+    height: 50px;
+    margin: -8px 10px 0 5px;
 }
 
-.leaf-4 {
-    width: 95px;
-    height: 70px;
+.leaf-5 {
+    width: 60px;
+    height: 50px;
+    margin: -5px 0 0 10px;
+}
+
+.purple-leaf {
+    width: 50px;
+    height: 40px;
+    rotate: 60deg;
+    margin: -5px 0 0 10px;
 }
 
 a,
@@ -261,7 +241,7 @@ footer {
 }
 
 .posts {
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .space-right {
@@ -588,20 +568,6 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .heading {
-        width: 300px;
-        margin: 30px 0 0 15px;
-    }
-
-    .earth {
-        height: 85px;
-        width: 85px;
-    }
-
     .header {
         padding: 0 0 0 15px;
     }

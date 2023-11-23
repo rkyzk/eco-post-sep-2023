@@ -98,7 +98,7 @@ class Post(models.Model):
         :returns: excerpt
         :rtype: str
         """
-        excerpt = str(self.content)[0:149] + "..."
+        excerpt = str(self.content)[0:79] + "..."
         return excerpt
 
     def get_absolute_url(self):
