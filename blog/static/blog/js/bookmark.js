@@ -8,7 +8,6 @@
              let csrftoken = getCookie('csrftoken');
              let url = 'bookmark/';
              let bMark = bmBtn.lastElementChild.classList.contains('fa-bookmark-o');
-             console.log(bMark);
              $.ajax({
                  url: url,
                  type: 'POST',
@@ -27,7 +26,14 @@
                      }
                  },
                  error: function (response) {
-                     alert("エラー発生。もう一度お試しください。");
+                     bmBtn.parentElement.nextElementSibling.textContent = "エラー発生。もう一度お試しください。";
+                     bmBtn.parentElement.nextElementSibling.classList.remove("hide");
+                     bmBtn.parentElement.nextElementSibling.classList.add("show");
+                     // エラーメッセージを３秒間表示
+                     setTimeout(() => {
+                         bmBtn.parentElement.nextElementSibling.classList.remove("show");
+                         bmBtn.parentElement.nextElementSibling.classList.add("hide");
+                     }, 3000);
                  }
              })
          });

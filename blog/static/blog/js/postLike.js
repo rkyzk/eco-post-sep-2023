@@ -27,7 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 },
                 error: function (response) {
-                    alert("エラー発生。もう一度お試しください。");
+                    likeBtn.parentElement.nextElementSibling.textContent = "エラー発生。もう一度お試しください。";
+                    likeBtn.parentElement.nextElementSibling.classList.remove("hide");
+                    likeBtn.parentElement.nextElementSibling.classList.add("show");
+                    setTimeout(() => {
+                        likeBtn.parentElement.nextElementSibling.classList.remove("show");
+                        likeBtn.parentElement.nextElementSibling.classList.add("hide");
+                    }, 3000);
                 }
             })
         });
