@@ -1,18 +1,53 @@
 {% extends "blog/base.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="container form-section">
-    <div class="col-lg-8 offset-lg-2">
-        <h2 class="mt-5 mb-4 page-heading"><i class="fa-solid fa-pen big-space-right"></i>記事を投稿</h2>
-        <p class=>環境を守るためにあなたがシェアしたいアイデアを投稿ください。
-        </p>
-        <form method="post" class="mt-5" enctype="multipart/form-data">
+<div class="container">
+    <div class="col-md-10 offset-md-1">
+        <h2 class="mt-5">Your Budget Plan</h2>
+        <form method="post" class="mt-5 add-form" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form | crispy }}
-            <p class="mt-2"><em>このサイト編集者が記事をレビューして不適切と判断した際は、記事を取り下げさせていただきますのでご了承ください。</em>
-            </p>
-            <button type="submit" class="blue-btn mt-2" name="save" value="draft">下書きとして保存</button>
-            <button type="submit" class="blue-btn mt-2 btn-right" name="publish" value="complete">投稿</button>
+            <label>start in</label>
+            <select id="month">
+                {% for m in months %}
+                <option value="{{ m }}">{{ m }}</option>
+                {% endfor %}
+            </select>
+            <select id="year">
+                {% for y in years %}
+                <option value="{{ y }}">{{ y }}</option>
+                {% endfor %}
+            </select>
+            <h2>Add items</h2>
+            {{ formset.non_form_errors.as_ul }}
+            <table>
+                {% for form in formset.forms %}
+                {% if forloop.first %}
+                <thead>
+                    <tr>
+                        {% for field in form.visible_fields %}
+                        <th class={{field.label|lower}}>{{ field.label|capfirst }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                {% endif %}
+                <tr class="{% cycle row1 row2 %}">
+                    {% for field in form.visible_fields %}
+                    <td class={{field.label|lower}}>
+                        {# Include the hidden fields in the form #}
+                        {% if forloop.first %}
+                        {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                        {% endfor %}
+                        {% endif %}
+                        {{ field.errors.as_ul }}
+                        {{ field }}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" class="mt-2" name="save">save</button>
+            <button type="button" class="mt-2" name="clear" value="clear">clear</button>
         </form>
     </div>
 </div>

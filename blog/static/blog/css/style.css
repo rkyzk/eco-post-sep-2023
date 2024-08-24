@@ -1,3 +1,9 @@
+/* styling for add_form */
+.add-form table tr .amount {
+    width: 75px;
+}
+
+
 /* 全ページ共通 */
 h2 {
     font-family: 'M PLUS 1p', sans-serif;

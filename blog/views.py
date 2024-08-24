@@ -13,6 +13,7 @@ from .forms import PostForm, CommentForm
 from .models import Post, Comment, CATEGORY
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from django import forms
 
 
 #　指定する数以上の「いいね」を集めた記事が「人気の記事」に表示される。
@@ -35,21 +36,21 @@ class PostList(generic.ListView):
             "-created_on")[:3]
     template_name = "blog/index.html"
 
-
+"""
 class AddPost(LoginRequiredMixin, generic.CreateView):
-    """
+   
     記事投稿のページを表示
-    """
+   
     model = Post
     template_name = "blog/add_post.html"
-    form_class = PostForm
+    form_class = 
 
     def form_valid(self, form):
-        """
+    
         入力内容をバリデート
         arguments: self, form: Post form
         :rtype: method
-        """
+   
         # ユーザーを投稿者に設定
         form.instance.author = self.request.user
         message = '記事を下書きとして保存しました。'
@@ -59,7 +60,52 @@ class AddPost(LoginRequiredMixin, generic.CreateView):
             message = "記事が投稿されました。"
         form.save()
         messages.add_message(self.request, messages.SUCCESS, message)
-        return super(AddPost, self).form_valid(form)
+        return super(AddPost, self).form_valid(form) """
+
+
+class AddPost(View):
+    def get(self, request, *args, **kwargs):
+        ExpenseFormSet = forms.formset_factory(
+            form=PostForm,
+            extra=9,
+            max_num=9
+        )
+        months = ['January', 'February', 'March', 'April', 'May', 'June',
+                 'July', 'August', 'September', 'October', 'November', 'December']
+        return render(
+            request,
+            "blog/add_post.html",
+            {
+                "formset": ExpenseFormSet,
+                "years": list(range(datetime.now().year, datetime.now().year + 5)),
+                "months": months
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        expense_form = PostForm(data=request.POST)
+        # year = request.Post["year"]
+        # month = request.Post["month"]
+        # print(year)
+        # print(year)
+        if expense_form.is_valid():
+            expense_form.instance.owner = request.user
+            expense = expense_form.save(commit=False)
+            expense.budget_month = month
+            expense.save()
+            page_template = "blog/post_detail.html",
+            messages.add_message(request, messages.SUCCESS,
+                                 'Your plan was saved')
+        else:
+            # エラーの場合、空コメントフォームとメッセージを表示
+            expense_form = PostForm()
+            messages.add_message(request, messages.INFO, "Error!  Your form wasn't saved.")
+            page_template = "blog/add_post.html",
+        return render(
+            request,
+            page_template,
+            {},
+        )
 
 
 class PostDetail(View):

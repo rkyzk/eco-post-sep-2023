@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from django.contrib.messages import constants as messages
-import django_heroku
+# import django_heroku
 
 
 if os.path.isfile('env.py'):
@@ -39,8 +39,10 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = [
     '8000-rkyzk-ecopostsep2023-1ej1p4vgf8u.ws-us106.gitpod.io',
-    'eco-post-2023-10366a3320ac.herokuapp.com/'
+    'eco-post.up.railway.app'
 ]
+
+CSRF_TRUSTED_ORIGINS = [ 'https://eco-post.up.railway.app' ]
 
 # Application definition
 
@@ -62,6 +64,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'django_filters',
     'widget_tweaks',
+    'django_yearmonth_widget',
     'blog'
 ]
 
@@ -154,7 +157,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 
