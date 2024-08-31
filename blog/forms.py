@@ -1,6 +1,6 @@
 """PostとCommentフォームを定義するモジュール"""
 
-from .models import Comment, Post, Expense, CATEGORY
+from .models import Comment, Post, CATEGORY
 from django import forms
 from django_yearmonth_widget.widgets import DjangoYearMonthWidget
 
@@ -13,22 +13,17 @@ class PostForm(forms.ModelForm):
     """Postフォーム"""
 
     class Meta:
-        """Postフォームの入力フィールドトラベルを設定"""
-        model = Expense
-        fields = ['name', 'amount', 'payment_type',
-                  'payment_date', 'frequency', 'start_date', 'end_date']
-        name = forms.CharField(required=True)
-        amount = forms.CharField(required=True)
-        payment_type = forms.IntegerField(required=True)
-        payment_date = forms.DateInput(format='%Y-%m-%d')
-        start_date = forms.DateInput(format='%Y-%m-%d')
-        end_date = forms.DateInput(format='%Y-%m-%d')
+        model = Post
+        fields = ['title', 'content', 'featured_image',
+                  'city', 'category']
+        title = forms.CharField(required=True)
+        content = forms.CharField(required=True)
+        city = forms.CharField(required=True)
 
-        widgets = {
-            'payment_date': DateInput(),
-            'start_date': DateInput(),
-            'end_date': DateInput(),
-        }
+        def __init__(self, *args, **kwargs):
+            """Set required flag of featured image to False."""
+            self.fields['featured_image'].required = False
+            super(PostForm, self).__init__(*args, **kwargs)
 
 
 class CommentForm(forms.ModelForm):

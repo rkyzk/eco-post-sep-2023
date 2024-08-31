@@ -25,7 +25,7 @@ class TestPostForm(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('title', form.errors.keys())
-        self.assertEqual(form.errors['title'][0], 'This field is required.')
+        self.assertEqual(form.errors['title'][0], 'このフィールドは必須です。')
 
     def test_post_content_is_required(self):
         form = PostForm({
@@ -39,7 +39,7 @@ class TestPostForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('content', form.errors.keys())
         self.assertEqual(form.errors['content'][0],
-                         'This field is required.')
+                         'このフィールドは必須です。')
 
     def test_post_featured_image_is_not_required(self):
         form = PostForm({
@@ -64,7 +64,7 @@ class TestPostForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('category', form.errors.keys())
         self.assertEqual(form.errors['category'][0],
-                         'This field is required.')
+                         'このフィールドは必須です。')
 
     def test_post_city_is_required(self):
         form = PostForm({
@@ -78,7 +78,7 @@ class TestPostForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('city', form.errors.keys())
         self.assertEqual(form.errors['city'][0],
-                         'This field is required.')
+                         'このフィールドは必須です。')
 
     def test_fields_are_explicit_in_form_metaclass(self):
         form = PostForm()
@@ -104,7 +104,7 @@ class TestCommentForm(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('body', form.errors.keys())
-        self.assertEqual(form.errors['body'][0], 'This field is required.')
+        self.assertEqual(form.errors['body'][0], 'このフィールドは必須です。')
 
     def test_fields_are_explicit_in_form_metaclass(self):
         form = CommentForm()
