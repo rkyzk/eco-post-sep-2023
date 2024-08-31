@@ -36,3 +36,6 @@ HTML/CSS, JavaScript, Python, Django, Bootstrap, jQuery, AJAX
 ## 本プロジェクト作成にあたり参考にした資料
 「Code Star」
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
+
+test_views 
+305

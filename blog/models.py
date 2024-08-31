@@ -93,7 +93,7 @@ class Post(models.Model):
 
     def excerpt(self):
         """
-        記事の最初の150文字を返す
+        記事の最初の80文字を返す
         :returns: excerpt
         :rtype: str
         """

@@ -24,18 +24,23 @@ class TestPostModel(TestCase):
             content="test 2 sentences"
             )
 
+    #1
     def test_featured_flag_default_to_False(self):
         self.assertEqual(self.post1.featured_flag, False)
 
+    #2
     def test_featured_image_default_to_default(self):
         self.assertEqual(self.post1.featured_image, 'default')
 
+    #3
     def test_category_default_to_others(self):
         self.assertEqual(self.post1.category, 'others')
 
+    #4
     def test_status_default_to_0(self):
         self.assertEqual(self.post1.status, 0)
 
+    #5
     def test_posts_ordered_by_created_on_newest_to_oldest(self):
         posts = Post.objects.all()
         i = 0
@@ -43,18 +48,22 @@ class TestPostModel(TestCase):
             self.assertGreater(posts[i].created_on, posts[i+1].created_on)
             i += 1
 
+    #6
     def test_post_will_be_slugified(self):
         self.assertTrue(self.post1.slug.startswith('title1'))
 
+    #7
     def test_str_method_will_return_title(self):
         self.assertEqual(str(self.post1), 'title1')
 
+    #8
     def test_num_of_likes_count_num_of_likes(self):
         self.post1.likes.add(self.user2)
         self.post1.save()
         self.assertEqual(self.post1.num_of_likes,
                          self.post1.likes.count())
 
+    #9
     def test_excerpt_returns_specified_str(self):
         content = "1234567890123456789012345678901234567890" + \
             "1234567890123456789012345678901234567890" + \
@@ -65,8 +74,9 @@ class TestPostModel(TestCase):
             author=self.user1,
             content=content
         )
-        self.assertEqual(post3.excerpt(), str(content)[0:149] + "...")
+        self.assertEqual(post3.excerpt(), str(content)[0:79] + "...")
 
+    #10
     def test_get_absolute_url(self):
         self.assertEqual(self.post1.get_absolute_url(),
                          '/detail/' + self.post1.slug + '/')
@@ -89,9 +99,11 @@ class TestCommentModels(TestCase):
             body='test comment'
         )
 
+    #11
     def test_comment_status_default_to_0(self):
         self.assertEqual(self.comment1.comment_status, 0)
 
+    #12
     def test_comments_ordered_from_oldest_to_newest(self):
         comment2 = Comment.objects.create(
             commenter=self.user1,
@@ -104,6 +116,7 @@ class TestCommentModels(TestCase):
             self.assertLess(comments[i].created_on, comments[i+1].created_on)
             i += 1
 
+    #13
     def test_str_method_will_return_body_and_commenter(self):
         self.assertEqual(str(self.comment1), 'test comment by test1')
 
