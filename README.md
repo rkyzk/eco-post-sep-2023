@@ -2,7 +2,7 @@
 
 ![image](./staticfiles/media/eco-post.png)
 
-デプロイしたプロジェクトは[こちら](https://eco-post-2023-10366a3320ac.herokuapp.com/)
+デプロイしたプロジェクトは[こちら](https://eco-post.up.railway.app/)
 
 ## 概要
 近年、気候変動のため、将来が不安になっている方が多いと思います。「どうせもうダメだ」と考えている人もいるようです。エコポストは問題に対して何かしら取り組んでいる方達の活動内容やアイデアをシェアするためのプラットフォームです。記事を読んだサイト閲覧者が、できることを新しく始めたり、前向きに考えたりするきっかけを与えることが、このサイトの目的です。
@@ -36,7 +36,3 @@ HTML/CSS, JavaScript, Python, Django, Bootstrap, jQuery, AJAX
 ## 本プロジェクト作成にあたり参考にした資料
 「Code Star」
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
-
-
-<img src="https://res.cloudinary.com/dacgkk0so/image/upload/v1691891794/blue-earth_dvkptz.png"
-                    class="earth" alt="blue and green earth">
