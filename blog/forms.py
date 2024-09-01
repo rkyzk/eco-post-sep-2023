@@ -5,6 +5,7 @@ from django import forms
 from django_yearmonth_widget.widgets import DjangoYearMonthWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
+from .models import CATEGORY
 
 
 class DateInput(forms.DateInput):
@@ -17,7 +18,7 @@ class PostForm(forms.ModelForm):
     content = forms.CharField(label='内容', widget=forms.Textarea)
     featured_image = forms.ImageField(label='画像', required=False)
     city = forms.CharField(label='市/町/村')
-    category = forms.CharField(label='カテゴリー')
+    category = forms.ChoiceField(choices=CATEGORY, label='カテゴリー')
 
     class Meta:
         model = Post
