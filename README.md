@@ -1,6 +1,6 @@
 # エコポスト
 
-![image](./staticfiles/media/eco-post.png)
+![image](./tests/screenshots/ecopost.png)
 
 デプロイしたプロジェクトは[こちら](https://eco-post.up.railway.app)
 
