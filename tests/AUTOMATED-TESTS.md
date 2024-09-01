@@ -1,22 +1,23 @@
 ## 自動テスト項目
 
-test_forms
-（必須項目に関してはテストにてエラーメッセージも確認）
-<PostFormについて>
+### test_forms
+（必須項目に関してはテストにてエラーメッセージも確認）<br>
+- PostForm
 1. タイトルが必須であること
 2. contentが必須であること
 3. 画像が必須でないこと
 4. カテゴリーが必須であること
 5. cityが必須であること
-6.　メタクラスのフィールドが'title', 'content', 'featured_image','city', 'category'であること
-<TestCommentFormについて>
+6. メタクラスのフィールドが'title', 'content', 'featured_image','city', 'category'であること
+
+- TestCommentForm
 7. bodyが必須であること
 8. メタクラスのフィールドが'body'であること
 
 <img style="width:500px;" src="./screenshots/test_forms.png">
 
-test_models
-<PostModelについて>
+### test_models
+- PostModelについて
 1. 記事投稿の際、デフォルトでfeatured_flagがFalseに設定されること
 2. 画像をアップロードしない際、featured_imageに「default」が設定されること
 3. カテゴリーを選択しない際、othersが設定されること
@@ -28,9 +29,9 @@ test_models
 9. excerptメソッドは記事の最初の80文字を返すこと
 10. get_absolute_urlが正しいURLを返すこと
 
-<img style="width:500px;" src="./screenshots/test_models.png">
+<img style="width:500px;" src="./screenshots/tests_models.png">
 
-test_views
+### test_views
 1. url「/」にgetリクエストしてindex.htmlが表示されること
 2. ホーム画面にfeaturedの記事３件が表示されること
 3. ログインしていないとき「記事を投稿」画面を表示しようとするとログイン画面にリダイレクトされること
@@ -73,5 +74,5 @@ test_views
 40. ログインした状態で自分のマイページが表示できること
 41. 他ユーザのマイページをGETリクエストするとステータスコード403が返されること
 
-<img style="width:500px;" src="./screenshots/test_views1.png">
-<img style="width:500px;" src="./screenshots/test_views2.png">
+<img style="width:500px;" src="./screenshots/tests_views1.png">
+<img style="width:500px;" src="./screenshots/tests_views2.png">

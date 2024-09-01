@@ -33,5 +33,5 @@ HTML/CSS, JavaScript, Python, Django, Bootstrap, jQuery, AJAX
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
 
 ## テスト
-[自動テスト項目](./tests/AUTOMATED-TESTS.md)
+[自動テスト項目](./tests/AUTOMATED-TESTS.md)<br>
 [手動テスト](./tests/MANUAL-TESTS.md)
