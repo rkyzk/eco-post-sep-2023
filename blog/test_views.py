@@ -243,6 +243,18 @@ class TestViews(TestCase):
         self.assertEqual(str(messages[0]), 'コメントが投稿されました。')
 
     #21
+    def test_post_detail_POST_error_message_if_nothing_entered(self):
+        response = self.c.post(f'/detail/{self.post1.slug}/',
+                               {'body': ''})
+        self.assertContains(response,
+                            '<div class="alert alert-info alert-dismissible' +
+                            ' fade show" id="msg" role="alert">',
+                            status_code=200)
+        self.assertContains(response,
+                            'エラー発生。コメントは保存されませんでした。',
+                            status_code=200)
+
+    #22
     def test_post_detail_POST_error_message_if_a_space_entered(self):
         response = self.c.post(f'/detail/{self.post1.slug}/',
                                {'body': ' '})
@@ -253,7 +265,7 @@ class TestViews(TestCase):
         self.assertContains(response,
                             'エラー発生。コメントは保存されませんでした。',
                             status_code=200)
-    #22
+    #23
     def test_detail_GET_shows_update_and_delete_btn_if_draft_and_author(self):
         self.post1.status = 0
         self.post1.save()
