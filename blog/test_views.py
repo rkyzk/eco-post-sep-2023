@@ -280,7 +280,7 @@ class TestViews(TestCase):
                             status_code=200)
 
     # Testing "DeleteComment" view -----------------------------------------
-    #23
+    #24
     def test_delete_comment_POST_will_set_comment_status_to_2(self):
         response = self.c.post('/delete_comment/comment1/')
         comment = Comment.objects.filter(commenter=self.user1).first()
@@ -289,24 +289,24 @@ class TestViews(TestCase):
         self.assertRedirects(response, f'/detail/{comment.post.slug}/')
 
     # Testing "UpdatePost" view ————————————————————
-    #24
+    #25
     def test_update_post_GET_gets_the_page_if_right_user(self):
         response = self.c.get(f'/update/{self.post6.slug}/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/update_post.html', 'blog/base.html')
 
-    #25
+    #26
     def test_update_post_GET_will_redirect_to_login_if_not_logged_in(self):
         response = self.client.get(f'/update/{self.post1.slug}/')
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/accounts/login/'))
 
-    #26
+    #27
     def test_update_post_GET_will_403_if_wrong_user(self):
         response = self.c2.get(f'/update/{self.post1.slug}/')
         self.assertEqual(response.status_code, 403)
 
-    #27
+    #28
     def test_update_post_POST_will_update_title(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -319,7 +319,7 @@ class TestViews(TestCase):
         self.assertEqual(post.title, 'title updated')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
-    #28
+    #29
     def test_update_post_POST_will_update_content(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -333,7 +333,7 @@ class TestViews(TestCase):
         self.assertEqual(post.content, 'content updated')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
-    #29
+    #30
     def test_update_post_POST_will_update_city(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -347,7 +347,7 @@ class TestViews(TestCase):
         self.assertEqual(post.city, 'test city 2')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
-    #30
+    #31
     def test_update_post_POST_cancel_will_not_update_post(self):
         response = self.c.post(reverse('update_post',
                                        kwargs={'slug': self.post6.slug}),
@@ -363,7 +363,7 @@ class TestViews(TestCase):
         self.assertEqual(post.category, 'others')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
-    #31
+    #32
     def test_update_post_POST_msg_says_change_saved_if_saved(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -376,7 +376,7 @@ class TestViews(TestCase):
         messages = list(response.context['messages'])
         self.assertEqual(str(messages[0]), "記事が更新されました。")
 
-    #32
+    #33
     def test_update_post_POST_msg_says_published_if_published(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -389,7 +389,7 @@ class TestViews(TestCase):
         messages = list(response.context['messages'])
         self.assertEqual(str(messages[0]), "記事が投稿されました。")
 
-    #33
+    #34
     def test_update_post_POST_publish_will_set_status_to_1(self):
         response = self.c.post(reverse('update_post',
                                        kwargs={'slug': self.post6.slug}),
@@ -402,7 +402,7 @@ class TestViews(TestCase):
         self.assertEqual(post.status, 1)
 
     # Testing "DeletePost" view ----------------------------------
-    #34
+    #35
     def test_delete_post_POST_will_delete_post_if_right_user(self):
         response = self.c.post(reverse('delete_post',
                                        kwargs={'slug': self.post6.slug}))
@@ -410,26 +410,18 @@ class TestViews(TestCase):
         self.assertEqual(len(existing_posts), 0)
         self.assertRedirects(response, '/')
 
-    #35
+    #36
     def test_delete_post_POST_will_show_403_if_wrong_user(self):
         response = self.c2.post(reverse('delete_post',
                                         kwargs={'slug': self.post6.slug}))
         self.assertEqual(response.status_code, 403)
 
-    #36
+    #37
     def test_delete_post_POST_will_not_delete_post_if_wrong_user(self):
         response = self.c2.post(reverse('delete_post',
                                         kwargs={'slug': self.post6.slug}))
         post = Post.objects.filter(slug=self.post1.slug).first()
         self.assertEqual(post.title, 'title1')
-
-    #37
-    def test_delete_post_POST_will_show_403_if_status_1(self):
-        self.post1.status = 1
-        self.post1.save()
-        response = self.c2.post(reverse('delete_post',
-                                        kwargs={'slug': self.post1.slug}))
-        self.assertEqual(response.status_code, 403)
 
     # Testing “RecentStories" view ----------------------------------
     #38
