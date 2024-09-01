@@ -384,6 +384,12 @@ footer {
     width: 350px;
 }
 
+/*----------- add_post.html ----------------------*/
+.block-content.form-section>div>form>#div_id_content>#id_content {
+    width: 100%;
+    height: 300px !important;
+}
+
 @media screen and (min-width: 995px) {
     #nav-menu {
         display: block !important;

@@ -3,6 +3,8 @@
 from .models import Comment, Post, CATEGORY
 from django import forms
 from django_yearmonth_widget.widgets import DjangoYearMonthWidget
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field
 
 
 class DateInput(forms.DateInput):
@@ -11,19 +13,16 @@ class DateInput(forms.DateInput):
 
 class PostForm(forms.ModelForm):
     """Postフォーム"""
+    title = forms.CharField(label='タイトル')
+    content = forms.CharField(label='内容', widget=forms.Textarea)
+    featured_image = forms.ImageField(label='画像', required=False)
+    city = forms.CharField(label='市/町/村')
+    category = forms.CharField(label='カテゴリー')
 
     class Meta:
         model = Post
         fields = ['title', 'content', 'featured_image',
                   'city', 'category']
-        title = forms.CharField(required=True)
-        content = forms.CharField(required=True)
-        city = forms.CharField(required=True)
-
-        def __init__(self, *args, **kwargs):
-            """Set required flag of featured image to False."""
-            self.fields['featured_image'].required = False
-            super(PostForm, self).__init__(*args, **kwargs)
 
 
 class CommentForm(forms.ModelForm):
@@ -31,4 +30,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-        labels = {'body': 'comment'}
+        labels = {'body': 'コメント'}
