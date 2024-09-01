@@ -28,6 +28,10 @@
 ## 使用言語、フレームワーク、ライブラリ
 HTML/CSS, JavaScript, Python, Django, Bootstrap, jQuery, AJAX
 
+## AJAXを使用した機能
+- 記事詳細画面のいいねとブックマーク機能
+- 記事詳細画面のコメントの更新
+
 ## 本プロジェクト作成にあたり参考にした資料
 「Code Star」
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
