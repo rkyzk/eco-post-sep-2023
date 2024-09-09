@@ -2,7 +2,8 @@
 ![image](./staticfiles/media/eco-post.png)
 
 This app allows users to post articles, read others' articles and exhange comments about the articles.<br>
-[Click here](https://eco-post-2023-10366a3320ac.herokuapp.com/) to visit the deployed site.
+[Click here](https://eco-post.up.railway.app) to visit the deployed site.
+
 
 ## Main Features
 ### All Users (including unregistered users)
@@ -26,8 +27,10 @@ This app allows users to post articles, read others' articles and exhange commen
 [Click here](https://wireframe.cc/pro/pp/873798723651976) to see the wireframes.
 
 ## Automated Testing
+[Automated Test Cases](./tests/AUTOMATED-TESTS.md)<br>
 
 ## Manual Testing
+[Manual Test Cases](./tests/MANUAL-TESTS.md)
 
 ## Technology used
 HTML5/CSS3, JavaScript, Python (Django), Bootstrap, jQuery, AJAX
@@ -35,11 +38,13 @@ HTML5/CSS3, JavaScript, Python (Django), Bootstrap, jQuery, AJAX
 ## Media
 
 - the graphics of colorful leaves
+
 https://www.freepik.com/free-vector/watercolor-leaves-falling_18774856.htm#query=colorful%20leaves%20transparent%20background&position=8&from_view=search&track=ais
 
 https://www.freepik.com/free-vector/watercolor-summer-leaves-collection-background_2198954.htm#query=colorful%20leaves%20transparent%20background&position=7&from_view=search&track=ais
 
 ## Credits
-I leanned many methods used in this project through the following project.
-「Code Star」
+I leanned many methods used in this project through the following project.<br>
+Code Star
+
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment

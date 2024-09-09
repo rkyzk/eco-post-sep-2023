@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url
 from django.contrib.messages import constants as messages
-# import django_heroku
 
 
 if os.path.isfile('env.py'):
@@ -38,11 +37,14 @@ DEBUG = False
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = [
-    '8000-rkyzk-ecopostsep2023-1ej1p4vgf8u.ws-us106.gitpod.io',
+    '8000-rkyzk-ecopostsep2023-ydsv5jf228v.ws-us115.gitpod.io',
     'eco-post.up.railway.app'
 ]
 
-CSRF_TRUSTED_ORIGINS = [ 'https://eco-post.up.railway.app' ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://eco-post.up.railway.app',
+    'https://8000-rkyzk-ecopostsep2023-ydsv5jf228v.ws-us115.gitpod.io'
+]
 
 # Application definition
 
@@ -116,7 +118,6 @@ WSGI_APPLICATION = 'ecopost.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))

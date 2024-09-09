@@ -1,8 +1,11 @@
 """PostとCommentフォームを定義するモジュール"""
 
-from .models import Comment, Post, Expense, CATEGORY
+from .models import Comment, Post, CATEGORY
 from django import forms
 from django_yearmonth_widget.widgets import DjangoYearMonthWidget
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field
+from .models import CATEGORY
 
 
 class DateInput(forms.DateInput):
@@ -11,24 +14,16 @@ class DateInput(forms.DateInput):
 
 class PostForm(forms.ModelForm):
     """Postフォーム"""
+    title = forms.CharField(label='タイトル')
+    content = forms.CharField(label='内容', widget=forms.Textarea)
+    featured_image = forms.ImageField(label='画像', required=False)
+    city = forms.CharField(label='市/町/村')
+    category = forms.ChoiceField(choices=CATEGORY, label='カテゴリー')
 
     class Meta:
-        """Postフォームの入力フィールドトラベルを設定"""
-        model = Expense
-        fields = ['name', 'amount', 'payment_type',
-                  'payment_date', 'frequency', 'start_date', 'end_date']
-        name = forms.CharField(required=True)
-        amount = forms.CharField(required=True)
-        payment_type = forms.IntegerField(required=True)
-        payment_date = forms.DateInput(format='%Y-%m-%d')
-        start_date = forms.DateInput(format='%Y-%m-%d')
-        end_date = forms.DateInput(format='%Y-%m-%d')
-
-        widgets = {
-            'payment_date': DateInput(),
-            'start_date': DateInput(),
-            'end_date': DateInput(),
-        }
+        model = Post
+        fields = ['title', 'content', 'featured_image',
+                  'city', 'category']
 
 
 class CommentForm(forms.ModelForm):
@@ -36,4 +31,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-        labels = {'body': 'comment'}
+        labels = {'body': 'コメント'}

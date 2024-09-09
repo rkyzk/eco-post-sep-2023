@@ -1,8 +1,8 @@
 # エコポスト
 
-![image](./staticfiles/media/eco-post.png)
+![image](./tests/screenshots/ecopost.png)
 
-デプロイしたプロジェクトは[こちら](https://eco-post-2023-10366a3320ac.herokuapp.com/)
+デプロイしたプロジェクトは[こちら](https://eco-post.up.railway.app)
 
 ## 概要
 近年、気候変動のため、将来が不安になっている方が多いと思います。「どうせもうダメだ」と考えている人もいるようです。エコポストは問題に対して何かしら取り組んでいる方達の活動内容やアイデアをシェアするためのプラットフォームです。記事を読んだサイト閲覧者が、できることを新しく始めたり、前向きに考えたりするきっかけを与えることが、このサイトの目的です。
@@ -17,7 +17,7 @@
 - 各記事詳細画面閲覧
 - メンバー登録
 
-### 登録したメンバー
+### 登録済みメンバー
 - ログイン、ログアウト
 - 記事投稿、更新、削除
 - 記事にコメントを投稿
@@ -27,12 +27,16 @@
 
 ## 使用言語、フレームワーク、ライブラリ
 HTML/CSS, JavaScript, Python, Django, Bootstrap, jQuery, AJAX
-## 今後修正すること
 
-- ユニットテストを修正、追加
-- マニュアルテスト追加、実施
-- ユーザープロファイルの作成
+## AJAXを使用した機能
+- 記事詳細画面のいいねとブックマーク機能
+- 記事詳細画面のコメントの更新
 
 ## 本プロジェクト作成にあたり参考にした資料
 「Code Star」
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
+
+## テスト
+[自動テスト項目](./tests/AUTOMATED-TESTS.md)<br>
+[手動テスト](./tests/MANUAL-TESTS.md)
+

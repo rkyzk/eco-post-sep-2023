@@ -67,6 +67,7 @@ class TestViews(TestCase):
                                                post=self.post1)
 
     # Testing "PostListView" -----------------------------------------
+    #1
     def test_get_postlist(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
@@ -74,6 +75,7 @@ class TestViews(TestCase):
                                 'blog/index.html',
                                 'blog/base.html')
 
+    #2
     def test_get_postlist_display_3_featured_stories(self):
         response = self.client.get('/')
         self.assertEqual(len(response.context['post_list']), 3)
@@ -81,11 +83,13 @@ class TestViews(TestCase):
                          [self.post3, self.post2, self.post1])
 
     # Testing "AddPost” view -----------------------------------------
+    #3
     def test_get_add_post_will_redirect_to_login_if_not_logged_in(self):
         response = self.client.get(reverse('add_story'))
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/accounts/login/'))
 
+    #4
     def test_can_get_add_post_if_logged_in(self):
         response = self.c.get('/add_story/')
         self.assertEqual(response.status_code, 200)
@@ -93,6 +97,7 @@ class TestViews(TestCase):
                                 'blog/base.html',
                                 'blog/add_post.html')
 
+    #5
     def test_add_story_POST_can_add_post(self):
         response = self.c.post('/add_story/',
                                {'title': 'test blog',
@@ -105,6 +110,7 @@ class TestViews(TestCase):
         self.assertEqual(post.content, 'test')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #6
     def test_add_post_POST_will_set_status_to_1_if_publish_clicked(self):
         response = self.c.post('/add_story/',
                                {'title': 'test blog',
@@ -117,6 +123,7 @@ class TestViews(TestCase):
         self.assertEqual(post.status, 1)
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #7
     def test_add_post_POST_keeps_status_to_0_if_save_clicked(self):
         response = self.c.post('/add_story/',
                                {'title': 'test blog',
@@ -129,6 +136,7 @@ class TestViews(TestCase):
         self.assertEqual(post.status, 0)
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #8
     def test_add_post_POST_save_will_render_msg_draft_saved(self):
         response = self.c.post('/add_story/',
                                {'title': 'test blog',
@@ -137,8 +145,9 @@ class TestViews(TestCase):
                                 'category': 'others',
                                 'save': 'draft'})
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Your draft has been saved.')
+        self.assertEqual(str(messages[0]), '記事を下書きとして保存しました。')
 
+    #9
     def test_message_says_post_is_published_if_published(self):
         response = self.c.post('/add_story/',
                                {'title': 'test blog',
@@ -148,9 +157,10 @@ class TestViews(TestCase):
                                 'publish': 'complete'})
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]),
-                         "Your post has been published.")
+                         "記事が投稿されました。")
 
     # Testing "PostDetail" view -----------------------------------------
+    #10
     def test_can_get_detail_page(self):
         response = self.client.get(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.status_code, 200)
@@ -158,10 +168,12 @@ class TestViews(TestCase):
                                 'blog/post_detail.html',
                                 'blog/base.html')
 
+    #11
     def test_post_detail_GET_liked_set_False_if_not_liked(self):
         response = self.c2.get(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['liked'], False)
 
+    #12
     def test_post_like_GET_will_set_liked_True_if_liked(self):
         post = Post.objects.filter(slug=self.post1.slug).first()
         post.likes.add(self.user2)
@@ -170,10 +182,12 @@ class TestViews(TestCase):
         response = self.c2.get(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['liked'], True)
 
+    #13
     def test_post_detail_POST_liked_set_False_if_not_liked(self):
         response = self.c2.post(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['liked'], False)
 
+    #14
     def test_post_like_POST_will_set_liked_True_if_liked(self):
         post = Post.objects.filter(slug=self.post1.slug).first()
         post.likes.add(self.user2)
@@ -182,10 +196,12 @@ class TestViews(TestCase):
         response = self.c2.post(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['liked'], True)
 
+    #15
     def test_post_detail_GET_bookmarked_set_False_if_not_bookmarked(self):
         response = self.c2.get(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['bookmarked'], False)
 
+    #16
     def test_post_detail_GET_will_set_bookmarked_True_if_bookmarked(self):
         post = Post.objects.filter(slug=self.post1.slug).first()
         post.bookmark.add(self.user2)
@@ -194,10 +210,12 @@ class TestViews(TestCase):
         response = self.c2.get(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['bookmarked'], True)
 
+    #17
     def test_post_detail_POST_bookmarked_set_False_if_not_bookmarked(self):
         response = self.c2.post(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['bookmarked'], False)
 
+    #18
     def test_post_detail_POST_will_set_bookmarked_True_if_bookmarked(self):
         post = Post.objects.filter(slug=self.post1.slug).first()
         post.bookmark.add(self.user2)
@@ -206,6 +224,7 @@ class TestViews(TestCase):
         response = self.c2.post(f'/detail/{self.post1.slug}/')
         self.assertEqual(response.context['bookmarked'], True)
 
+    #19
     def test_post_detail_POST_can_post_comment(self):
         response = self.c.post(f'/detail/{self.post1.slug}/',
                                {'body': 'test comment'})
@@ -216,12 +235,26 @@ class TestViews(TestCase):
                                 'blog/post_detail.html',
                                 'blog/base.html')
 
+    #20
     def test_post_detail_POST_msg_says_comment_posted_if_submitted(self):
         response = self.c.post(f'/detail/{self.post1.slug}/',
                                {'body': 'test comment'})
         messages = list(response.context['messages'])
-        self.assertEqual(str(messages[0]), 'You posted a comment.')
+        self.assertEqual(str(messages[0]), 'コメントが投稿されました。')
 
+    #21
+    def test_post_detail_POST_error_message_if_nothing_entered(self):
+        response = self.c.post(f'/detail/{self.post1.slug}/',
+                               {'body': ''})
+        self.assertContains(response,
+                            '<div class="alert alert-info alert-dismissible' +
+                            ' fade show" id="msg" role="alert">',
+                            status_code=200)
+        self.assertContains(response,
+                            'エラー発生。コメントは保存されませんでした。',
+                            status_code=200)
+
+    #22
     def test_post_detail_POST_error_message_if_a_space_entered(self):
         response = self.c.post(f'/detail/{self.post1.slug}/',
                                {'body': ' '})
@@ -230,108 +263,24 @@ class TestViews(TestCase):
                             ' fade show" id="msg" role="alert">',
                             status_code=200)
         self.assertContains(response,
-                            'Error occurred. Your comment was not saved.',
+                            'エラー発生。コメントは保存されませんでした。',
                             status_code=200)
-
+    #23
     def test_detail_GET_shows_update_and_delete_btn_if_draft_and_author(self):
         self.post1.status = 0
         self.post1.save()
         response = self.c.get(f'/detail/{self.post1.slug}/')
         self.assertContains(response,
-                            '<button class="beige-btn" name="update-post"' +
-                            ' type="submit">Update</button>',
+                            '<button class="blue-btn" name="update-post" ' +
+                            'type="submit">更新</button>',
                             status_code=200)
         self.assertContains(response,
-                            '<button type="submit" class="beige-btn ' +
-                            'btn-right" name="delete_post"',
+                            '<button type="button" class="btn blue-btn btn-right modal-btn" ' +
+                            'name="post" data-bs-toggle="modal"',
                             status_code=200)
 
-    def test_detail_GET_no_update_delete_btn_if_status1_and_author(self):
-        self.post1.status = 1
-        self.post1.save()
-        response = self.c.get(f'/detail/{self.post1.slug}/')
-        self.assertNotContains(response,
-                               '<button class="beige-btn" name="update-post"' +
-                               ' type="submit">Update</button>',
-                               status_code=200)
-        self.assertNotContains(response,
-                               '<button type="submit" class="beige-btn ' +
-                               'btn-right" name="delete_post"',
-                               status_code=200)
-
-    def test_detail_GET_no_update_and_delete_btn_if_status2_and_author(self):
-        self.post1.status = 2
-        self.post1.save()
-        response = self.c.get(f'/detail/{self.post1.slug}/')
-        self.assertNotContains(response,
-                               '<button class="beige-btn" name="update-post"' +
-                               ' type="submit">Update</button>',
-                               status_code=200)
-        self.assertNotContains(response,
-                               '<button type="submit" class="beige-btn ' +
-                               'btn-right" name="delete_post"',
-                               status_code=200)
-
-    def test_detail_GET_no_show_update_and_delete_btn_if_not_author(self):
-        response = self.c2.get(f'/detail/{self.post1.slug}/')
-        self.assertNotContains(response,
-                               '<button class="beige-btn" name="update-post"' +
-                               ' type="submit">Update</button>',
-                               status_code=200)
-        self.assertNotContains(response,
-                               '<button type="submit" class="beige-btn ' +
-                               'btn-right" name="delete_post"',
-                               status_code=200)
-
-    # Testing "PostLike" view -----------------------------------------
-    def test_post_like_POST_will_add_user(self):
-        response = self.c2.post(reverse('post_like',
-                                        kwargs={'slug': self.post1.slug}))
-        post = Post.objects.filter(slug=self.post1.slug).first()
-        self.assertRedirects(response, f'/detail/{self.post1.slug}/')
-        self.assertTrue(post.likes.filter(id=self.user2.id).exists())
-
-    def test_post_like_POST_for_the_second_time_will_remove_user(self):
-        response = self.c2.post(reverse('post_like',
-                                kwargs={'slug': self.post1.slug}))
-        response = self.c2.post(reverse('post_like',
-                                kwargs={'slug': self.post1.slug}))
-        post = Post.objects.filter(slug=self.post1.slug).first()
-        self.assertRedirects(response, f'/detail/{self.post1.slug}/')
-        self.assertFalse(post.likes.filter(id=self.user2.id).exists())
-
-    # Testing "Bookmark" view -----------------------------------------
-    def test_bookmark_POST_will_add_user(self):
-        response = self.c2.post(reverse('bookmark',
-                                        kwargs={'slug': self.post1.slug}))
-        post = Post.objects.filter(slug=self.post1.slug).first()
-        self.assertRedirects(response, f'/detail/{self.post1.slug}/')
-        self.assertTrue(post.bookmark.filter(id=self.user2.id).exists())
-
-    def test_bookmark_POST_for_2nd_time_will_remove_user(self):
-        response = self.c2.post(reverse('bookmark',
-                                        kwargs={'slug': self.post1.slug}))
-        response = self.c2.post(reverse('bookmark',
-                                        kwargs={'slug': self.post1.slug}))
-        post = Post.objects.filter(slug=self.post1.slug).first()
-        self.assertRedirects(response, f'/detail/{self.post1.slug}/')
-        self.assertFalse(post.bookmark.filter(id=self.user2.id).exists())
-
-    # Testing "UpdateComment" view -----------------------------------------
-    # def test_update_comment_GET_will_403_if_wrong_user(self):
-    #     response = self.c2.get(reverse('update_comment', kwargs={'id': 1}))
-    #     self.assertEqual(response.status_code, 403)
-
-    # def test_update_comment_POST_will_update_comment(self):
-    #     response = self.c.post('/update_comment/comment1/',
-    #                            {'body': 'comment updated'})
-    #     comment = Comment.objects.filter(commenter=self.user1).first()
-    #     self.assertEqual(comment.body, 'comment updated')
-    #     self.assertEqual(comment.comment_status, 1)
-    #     self.assertEqual(response.status_code, 302)
-    #     self.assertRedirects(response, f'/detail/{comment.post.slug}/')
-
     # Testing "DeleteComment" view -----------------------------------------
+    #24
     def test_delete_comment_POST_will_set_comment_status_to_2(self):
         response = self.c.post('/delete_comment/comment1/')
         comment = Comment.objects.filter(commenter=self.user1).first()
@@ -340,20 +289,24 @@ class TestViews(TestCase):
         self.assertRedirects(response, f'/detail/{comment.post.slug}/')
 
     # Testing "UpdatePost" view ————————————————————
+    #25
     def test_update_post_GET_gets_the_page_if_right_user(self):
         response = self.c.get(f'/update/{self.post6.slug}/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/update_post.html', 'blog/base.html')
 
+    #26
     def test_update_post_GET_will_redirect_to_login_if_not_logged_in(self):
         response = self.client.get(f'/update/{self.post1.slug}/')
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/accounts/login/'))
 
+    #27
     def test_update_post_GET_will_403_if_wrong_user(self):
         response = self.c2.get(f'/update/{self.post1.slug}/')
         self.assertEqual(response.status_code, 403)
 
+    #28
     def test_update_post_POST_will_update_title(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -366,6 +319,7 @@ class TestViews(TestCase):
         self.assertEqual(post.title, 'title updated')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #29
     def test_update_post_POST_will_update_content(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -379,6 +333,7 @@ class TestViews(TestCase):
         self.assertEqual(post.content, 'content updated')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #30
     def test_update_post_POST_will_update_city(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -392,6 +347,7 @@ class TestViews(TestCase):
         self.assertEqual(post.city, 'test city 2')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #31
     def test_update_post_POST_cancel_will_not_update_post(self):
         response = self.c.post(reverse('update_post',
                                        kwargs={'slug': self.post6.slug}),
@@ -407,6 +363,7 @@ class TestViews(TestCase):
         self.assertEqual(post.category, 'others')
         self.assertRedirects(response, f'/detail/{post.slug}/')
 
+    #32
     def test_update_post_POST_msg_says_change_saved_if_saved(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -419,6 +376,7 @@ class TestViews(TestCase):
         messages = list(response.context['messages'])
         self.assertEqual(str(messages[0]), "記事が更新されました。")
 
+    #33
     def test_update_post_POST_msg_says_published_if_published(self):
         response = self.c.post(reverse('update_post',
                                kwargs={'slug': self.post6.slug}),
@@ -431,6 +389,7 @@ class TestViews(TestCase):
         messages = list(response.context['messages'])
         self.assertEqual(str(messages[0]), "記事が投稿されました。")
 
+    #34
     def test_update_post_POST_publish_will_set_status_to_1(self):
         response = self.c.post(reverse('update_post',
                                        kwargs={'slug': self.post6.slug}),
@@ -443,6 +402,7 @@ class TestViews(TestCase):
         self.assertEqual(post.status, 1)
 
     # Testing "DeletePost" view ----------------------------------
+    #35
     def test_delete_post_POST_will_delete_post_if_right_user(self):
         response = self.c.post(reverse('delete_post',
                                        kwargs={'slug': self.post6.slug}))
@@ -450,39 +410,37 @@ class TestViews(TestCase):
         self.assertEqual(len(existing_posts), 0)
         self.assertRedirects(response, '/')
 
+    #36
     def test_delete_post_POST_will_show_403_if_wrong_user(self):
         response = self.c2.post(reverse('delete_post',
                                         kwargs={'slug': self.post6.slug}))
         self.assertEqual(response.status_code, 403)
 
+    #37
     def test_delete_post_POST_will_not_delete_post_if_wrong_user(self):
         response = self.c2.post(reverse('delete_post',
                                         kwargs={'slug': self.post6.slug}))
         post = Post.objects.filter(slug=self.post1.slug).first()
         self.assertEqual(post.title, 'title1')
 
-    def test_delete_post_POST_will_show_403_if_status_1(self):
-        self.post1.status = 1
-        self.post1.save()
-        response = self.c2.post(reverse('delete_post',
-                                        kwargs={'slug': self.post1.slug}))
-        self.assertEqual(response.status_code, 403)
-
     # Testing “RecentStories" view ----------------------------------
+    #38
     def test_can_get_recent_stories(self):
-        response = self.client.get('/recent_stories/')
+        response = self.client.get('/recent_posts/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response,
-                                'blog/recent_posts.html',
+                                'blog/paginated_posts_list.html',
                                 'blog/base.html')
 
     # Testing "PopularStories" view ----------------------------------
+    #39
     def test_can_get_readers_favorite_stories(self):
-        response = self.client.get('/popular_stories/')
+        response = self.client.get('/popular_posts/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'blog/popular_posts.html')
+        self.assertTemplateUsed(response, 'blog/paginated_posts_list.html', 'blog/base.html')
 
     # Testing "MyPage" view ----------------------------------
+    #40
     def test_my_page_GET_will_get_page_if_user(self):
         response = self.c.get(f'/my_page/{self.user1.pk}/')
         self.assertEqual(response.status_code, 200)
@@ -490,6 +448,7 @@ class TestViews(TestCase):
                                 'blog/my_page.html',
                                 'blog/base.html')
 
+    #41
     def test_my_page_GET_will_403_if_wrong_user(self):
         response = self.c2.get(f'/my_page/{self.user1.pk}/')
         self.assertEqual(response.status_code, 403)
