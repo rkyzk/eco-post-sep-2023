@@ -1,5 +1,5 @@
 # Eco Post
-![image](./staticfiles/media/eco-post.png)
+![image](./static/media/ecopost.png)
 
 This app allows users to post articles, read others' articles and exhange comments about the articles.<br>
 [Click here](https://eco-post.up.railway.app) to visit the deployed site.
