@@ -4,6 +4,7 @@
 This app allows users to post articles, read others' articles and exhange comments about the articles.<br>
 [Click here](https://eco-post.up.railway.app) to visit the deployed site.
 
+
 ## Main Features
 ### All Users (including unregistered users)
 - visit Home, 'Articles from the past week,' 'Popular posts' pages
@@ -45,4 +46,5 @@ https://www.freepik.com/free-vector/watercolor-summer-leaves-collection-backgrou
 ## Credits
 I leanned many methods used in this project through the following project.<br>
 Code Star
+
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
