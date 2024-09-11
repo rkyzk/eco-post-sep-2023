@@ -16,7 +16,7 @@ Eco Post offers a platform where users can share their ideas on what individuals
 
 ### Registered Users
 - log in/out
-- write, Update, Delete Articles
+- write, update, delete articles
 - leave comments on articles
 - update, delete comments
 - like and bookmark articles
