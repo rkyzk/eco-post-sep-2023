@@ -54,23 +54,23 @@ No.|As a… |I can…|so that …|Priority (1 is the highest)|
 [Click here](https://wireframe.cc/pro/pp/873798723651976) to see the wireframes.
 
 ## Automated Testing
-[Automated Test Cases](./tests/AUTOMATED-TESTS.md)<br>
+[Automated Test Cases](./tests/AUTOMATED_TESTING_EN)<br>
 
 ## Manual Testing
-[Manual Test Cases](./tests/MANUAL-TESTS.md)
+[Manual Test Cases](./tests/MANUAL-TESTING_EN.md)
 
 ## Technology used
 HTML5/CSS3, JavaScript, Python (Django), Bootstrap, jQuery, AJAX
 
 ## Media
 
-- the graphics of colorful leaves
+- The graphics of colorful leaves
 
 https://www.freepik.com/free-vector/watercolor-leaves-falling_18774856.htm#query=colorful%20leaves%20transparent%20background&position=8&from_view=search&track=ais
 
 https://www.freepik.com/free-vector/watercolor-summer-leaves-collection-background_2198954.htm#query=colorful%20leaves%20transparent%20background&position=7&from_view=search&track=ais
 
 ## Credits
-I leanned many methods used in this project through the following project.<br>
+I leanned many of the methods used in this project through the following project.<br>
 Code Star
 https://github.com/Code-Institute-Solutions/Django3blog/tree/master/12_final_deployment
